@@ -12,7 +12,9 @@ set(VERSION_MINOR "0")
 #############
 set(INCLUDES source include)
 file(GLOB SOURCES source/*.cpp)
-set(CUSTOM_CFLAGS -DHELLO_WORLD)
+set(CUSTOM_CFLAGS
+        -DVERSION_MAJOR="${VERSION_MAJOR}"
+        -DVERSION_MINOR="${VERSION_MINOR}")
 set(CUSTOM_LDFLAGS)
 
 #############
@@ -27,4 +29,4 @@ target_link_libraries(${PROJECT_NAME}.elf cross2d ${CUSTOM_LDFLAGS})
 #############
 # targets
 #############
-include(../libcross2d/Targets.cmake)
+include(../../libcross2d/Targets.cmake)
