@@ -1,0 +1,3 @@
+[submodule "libcross2d"]
+	path = libcross2d
+	url = git@gitlab.com:cpasjuste/libcross2d.git
