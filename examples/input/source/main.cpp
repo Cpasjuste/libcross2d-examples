@@ -5,10 +5,16 @@
 #include "cross2d/c2d.h"
 
 #ifdef __PSP2__
-#define TEX_PATH "data/gbatemp.png"
+#define SCR_W 960
+#define SCR_H 544
+#define TEX_PATH "app0:/data/gbatemp.png"
 #elif __3DS__
+#define SCR_W 400
+#define SCR_H 240
 #define TEX_PATH "data/gbatemp.png"
 #else
+#define SCR_W 1280
+#define SCR_H 720
 #define TEX_PATH "data/gbatemp.png"
 #endif
 

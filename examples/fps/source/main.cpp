@@ -4,6 +4,17 @@
 
 #include "cross2d/c2d.h"
 
+#ifdef __PSP2__
+#define SCR_W 960
+#define SCR_H 544
+#elif __3DS__
+#define SCR_W 400
+#define SCR_H 240
+#else
+#define SCR_W 1280
+#define SCR_H 720
+#endif
+
 using namespace c2d;
 
 int main() {
@@ -11,7 +22,7 @@ int main() {
     char fps[32];
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({1280, 720});
+    auto *renderer = new C2DRenderer({SCR_W, SCR_H});
 
     // load default font
     auto *font = new C2DFont();
