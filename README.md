@@ -35,4 +35,5 @@ Build and run (Nintendo Switch)
     export DEVKITPRO=/opt/devkitpro
     cmake -DBUILD_SWITCH=1 ../
     make texture.nro
+    make texture_switch_release.zip
     ```
