@@ -8,7 +8,7 @@ using namespace c2d;
 
 int main() {
 
-    char fps[16];
+    char fps[32];
 
     // create the main renderer
     auto *renderer = new C2DRenderer({1280, 720});
@@ -29,7 +29,7 @@ int main() {
     // main loop
     while (renderer->getElapsedTime().asSeconds() < 10) {
 
-        snprintf(fps, 15, "FPS: %.2g/60", renderer->getFps());
+        snprintf(fps, 31, "FPS: %.2g/60", renderer->getFps());
         text->setString(fps);
 
         // draw everything

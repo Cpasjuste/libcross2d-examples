@@ -6,6 +6,8 @@ project(font)
 set(PROJECT_AUTHOR "Cpasjuste")
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "0")
+# ps vita
+set(TITLE_ID "CROSS0001")
 
 #############
 # code

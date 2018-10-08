@@ -11,8 +11,9 @@ int main() {
     // create the main renderer
     auto *renderer = new C2DRenderer({1280, 720});
 
-    // load default font
+    // create a font
     auto *font = new C2DFont();
+    // load default (embedded) font
     if (font->load()) {
         // some font have different offset..
         font->setOffset({0, -6});
