@@ -23,7 +23,7 @@ using namespace c2d;
 int main() {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({1280, 720});
+    auto *renderer = new C2DRenderer({SCR_W, SCR_H});
 
     auto *texture = new C2DTexture(TEX_PATH);
     texture->setOrigin(Origin::Center);
