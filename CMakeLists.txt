@@ -26,3 +26,6 @@ add_subdirectory(examples/texture)
 
 # input example
 add_subdirectory(examples/input)
+
+# fps example
+add_subdirectory(examples/fps)
