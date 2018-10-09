@@ -35,6 +35,7 @@ void addTweenShape(C2DRectangle *rect, int count) {
 
         auto r = FloatRect(x(mt), y(mt), w(mt), w(mt));
         Shape *shape;
+        // create a "gbatemp" texture every 10 shapes
         if (rect->getChilds().size() % 10 != 0) {
             shape = new C2DRectangle(r);
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
@@ -46,8 +47,7 @@ void addTweenShape(C2DRectangle *rect, int count) {
             shape->add(tweenColor);
             auto *tweenScale = new TweenScale(
                     {1.0f, 1.0f},
-                    {scale(mt), scale(mt)},
-                    scale(mt), TweenLoop::PingPong);
+                    {scale(mt), scale(mt)}, scale(mt), TweenLoop::PingPong);
             shape->add(tweenScale);
         } else {
             shape = new C2DTexture(TEX_PATH);
@@ -55,8 +55,7 @@ void addTweenShape(C2DRectangle *rect, int count) {
             float from = scale(mt) / 2;
             float to = scale(mt) / 2;
             auto *tweenScale = new TweenScale(
-                    {from, from}, {to, to},
-                    scale(mt), TweenLoop::PingPong);
+                    {from, from}, {to, to}, scale(mt), TweenLoop::PingPong);
             shape->add(tweenScale);
         }
         shape->setOrigin(Origin::Center);
@@ -116,6 +115,7 @@ int main() {
     // add some shapes to the rect
     addTweenShape(rect, 100);
 
+    // set text in front of everything
     text->setLayer(2);
 
     // main loop
