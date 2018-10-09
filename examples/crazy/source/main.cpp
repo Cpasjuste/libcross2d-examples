@@ -21,49 +21,74 @@
 
 using namespace c2d;
 
-void addTweenRect(Renderer *renderer, int count) {
+void addTweenShape(C2DRectangle *rect, int count) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<float> x(0, renderer->getSize().x);
-    std::uniform_real_distribution<float> y(0, renderer->getSize().y);
+    std::uniform_real_distribution<float> x(0, rect->getSize().x);
+    std::uniform_real_distribution<float> y(0, rect->getSize().y);
     std::uniform_real_distribution<float> w(10, 150);
     std::uniform_real_distribution<float> color(0, 255);
-    std::uniform_real_distribution<float> scale(0.5f, 3.0f);
+    std::uniform_real_distribution<float> scale(0.2f, 1.0f);
 
     for (int i = 0; i < count; i++) {
 
-        auto rect = FloatRect(x(mt), y(mt), w(mt), w(mt));
-        auto *r = new C2DRectangle(rect);
-        r->setOrigin(Origin::Center);
-        r->setOutlineColor({color(mt), color(mt), color(mt)});
-        r->setOutlineThickness(2);
+        auto r = FloatRect(x(mt), y(mt), w(mt), w(mt));
+        Shape *shape;
+        if (rect->getChilds().size() % 10 != 0) {
+            shape = new C2DRectangle(r);
+            shape->setOutlineColor({color(mt), color(mt), color(mt)});
+            shape->setOutlineThickness(2);
+            auto *tweenColor = new TweenColor(
+                    {color(mt), color(mt), color(mt)},
+                    {color(mt), color(mt), color(mt)},
+                    scale(mt), TweenLoop::PingPong);
+            shape->add(tweenColor);
+            auto *tweenScale = new TweenScale(
+                    {1.0f, 1.0f},
+                    {scale(mt), scale(mt)},
+                    scale(mt), TweenLoop::PingPong);
+            shape->add(tweenScale);
+        } else {
+            shape = new C2DTexture(TEX_PATH);
+            ((C2DTexture *) shape)->setPosition(r.left, r.top);
+            float from = scale(mt) / 2;
+            float to = scale(mt) / 2;
+            auto *tweenScale = new TweenScale(
+                    {from, from}, {to, to},
+                    scale(mt), TweenLoop::PingPong);
+            shape->add(tweenScale);
+        }
+        shape->setOrigin(Origin::Center);
 
         auto *tweenPos = new TweenPosition(
-                {r->getPosition().x, r->getPosition().y}, {x(mt), y(mt)},
+                {shape->getPosition().x, shape->getPosition().y}, {x(mt), y(mt)},
                 3.0f, TweenLoop::PingPong);
-        r->add(tweenPos);
+        shape->add(tweenPos);
         auto *tweenRot = new TweenRotation(0, 360, 4.0f, TweenLoop::PingPong);
-        r->add(tweenRot);
-        auto *tweenScale = new TweenScale(
-                {scale(mt), scale(mt)},
-                {scale(mt), scale(mt)},
-                scale(mt), TweenLoop::PingPong);
-        r->add(tweenScale);
-        auto *tweenColor = new TweenColor(
-                {color(mt), color(mt), color(mt)},
-                {color(mt), color(mt), color(mt)},
-                scale(mt), TweenLoop::PingPong);
-        r->add(tweenColor);
+        shape->add(tweenRot);
 
-        renderer->add(r);
+        rect->add(shape);
+    }
+}
+
+void removeTweenShape(C2DRectangle *rect, int count) {
+
+    for (int i = 0; i < count; i++) {
+        if (rect->getChilds().empty()) {
+            break;
+        }
+        C2DObject *child = rect->getChilds().at(0);
+        if (child) {
+            delete (child);
+            rect->remove(child);
+        }
     }
 }
 
 int main() {
 
-    char fps[64];
-    int count = 100;
+    char info[128];
 
     // create the main renderer
     auto *renderer = new C2DRenderer({SCR_W, SCR_H});
@@ -76,15 +101,22 @@ int main() {
     // load default font
     auto *font = new C2DFont();
     font->load();
-
-    addTweenRect(renderer, count);
-
     // create fps text and add it to the renderer
     auto *text = new C2DText("FPS: 60/60", *font);
     text->setOrigin(Origin::BottomRight);
-    text->setPosition(renderer->getSize().x - 5, renderer->getSize().y - 45);
+    text->setPosition(renderer->getSize().x - 5, renderer->getSize().y - 80);
     text->setOutlineThickness(1);
     renderer->add(text);
+
+    // create a rectangle shape holding our childs
+    C2DRectangle *rect = new C2DRectangle({renderer->getSize().x, renderer->getSize().y});
+    rect->setFillColor(Color::Transparent);
+    renderer->add(rect);
+
+    // add some shapes to the rect
+    addTweenShape(rect, 100);
+
+    text->setLayer(2);
 
     // main loop
     while (true) {
@@ -101,17 +133,26 @@ int main() {
             }
 
             if (keys & Input::Key::KEY_UP) {
-                addTweenRect(renderer, 10);
+                addTweenShape(rect, 10);
                 text->setLayer(2);
-                count += 10;
+            } else if (keys & Input::Key::KEY_DOWN) {
+                removeTweenShape(rect, 10);
+                text->setLayer(2);
+            } else if (keys & Input::Key::KEY_LEFT) {
+                removeTweenShape(rect, 100);
+                text->setLayer(2);
+            } else if (keys & Input::Key::KEY_RIGHT) {
+                addTweenShape(rect, 100);
+                text->setLayer(2);
             }
         }
 
         // update fps
-        snprintf(fps, 63,
-                 "press (UP) to add some stuff\nfps: %.2g/60, obj: %i",
-                 renderer->getFps(), count);
-        text->setString(fps);
+        snprintf(info, 128,
+                 "libcross2d \"crazy example\"\n"
+                 "press dpad to do some stuff\nfps: %.2g/60, obj: %i",
+                 renderer->getFps(), (int) rect->getChilds().size());
+        text->setString(info);
 
         // draw everything
         renderer->flip();
