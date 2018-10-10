@@ -44,6 +44,5 @@ Build and run (Nintendo 3DS)
     ```
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
     sudo dpkg -i devkitpro-pacman.deb
-    sudo dkp-pacman -S 3ds-dev
-    sudo dkp-pacman -S 3ds-zlib 3ds-freetype 3ds-libpng 3ds-pkg-config
+    sudo dkp-pacman -S 3ds-dev 3ds-zlib 3ds-freetype 3ds-libpng 3ds-pkg-config
     ```
