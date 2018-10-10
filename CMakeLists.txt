@@ -10,7 +10,7 @@ set(BUILD_SDL2_SOFT OFF CACHE BOOL "Build with SDL2 support (software rendering,
 set(BUILD_VITA OFF CACHE BOOL "Build with Ps Vita support")
 set(BUILD_PS3 OFF CACHE BOOL "Build with PS3 support")
 set(BUILD_3DS OFF CACHE BOOL "Build with 3DS support")
-set(BUILD_SWITCH ON CACHE BOOL "Build with Nintendo Switch support")
+set(BUILD_SWITCH OFF CACHE BOOL "Build with Nintendo Switch support")
 
 # add libcross2d library
 add_subdirectory(libcross2d)
