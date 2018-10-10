@@ -36,7 +36,7 @@ int main() {
         renderer->flip();
     }
 
-    // cleanup font resources
+    // cleanup
     delete (font);
     // will delete child's (textures, shapes, text..)
     delete (renderer);

@@ -27,6 +27,7 @@ int main() {
         renderer->flip();
     }
 
+    // cleanup
     delete(io);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
