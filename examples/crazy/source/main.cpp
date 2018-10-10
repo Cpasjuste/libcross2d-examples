@@ -5,23 +5,9 @@
 #include <random>
 #include "cross2d/c2d.h"
 
-#ifdef __PSP2__
-#define SCR_W 960
-#define SCR_H 544
-#define TEX_PATH "app0:/data/gbatemp.png"
-#elif __3DS__
-#define SCR_W 400
-#define SCR_H 240
-#define TEX_PATH "data/gbatemp.png"
-#else
-#define SCR_W 1280
-#define SCR_H 720
-#define TEX_PATH "data/gbatemp.png"
-#endif
-
 using namespace c2d;
 
-void addTweenShape(C2DRectangle *rect, int count) {
+void addTweenShape(C2DIo *io, C2DRectangle *rect, int count) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -50,7 +36,7 @@ void addTweenShape(C2DRectangle *rect, int count) {
                     {scale(mt), scale(mt)}, scale(mt), TweenLoop::PingPong);
             shape->add(tweenScale);
         } else {
-            shape = new C2DTexture(TEX_PATH);
+            shape = new C2DTexture(io->getDataPath() + "gbatemp.png");
             ((C2DTexture *) shape)->setPosition(r.left, r.top);
             float from = scale(mt) / 2;
             float to = scale(mt) / 2;
@@ -90,8 +76,12 @@ int main() {
     char info[128];
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({SCR_W, SCR_H});
+    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
+    // create io helper
+    auto *io = new C2DIo();
+
+    // init inputs
     auto *input = new C2DInput();
     input->setRepeatEnable(true);
     input->setJoystickMapping(0, C2D_DEFAULT_JOY_KEYS);
@@ -113,7 +103,7 @@ int main() {
     renderer->add(rect);
 
     // add some shapes to the rect
-    addTweenShape(rect, 100);
+    addTweenShape(io, rect, 100);
 
     // set text in front of everything
     text->setLayer(2);
@@ -133,7 +123,7 @@ int main() {
             }
 
             if (keys & Input::Key::KEY_UP) {
-                addTweenShape(rect, 10);
+                addTweenShape(io, rect, 10);
                 text->setLayer(2);
             } else if (keys & Input::Key::KEY_DOWN) {
                 removeTweenShape(rect, 10);
@@ -142,7 +132,7 @@ int main() {
                 removeTweenShape(rect, 100);
                 text->setLayer(2);
             } else if (keys & Input::Key::KEY_RIGHT) {
-                addTweenShape(rect, 100);
+                addTweenShape(io, rect, 100);
                 text->setLayer(2);
             }
         }
@@ -158,6 +148,8 @@ int main() {
         renderer->flip();
     }
 
+    delete(io);
+    delete (input);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

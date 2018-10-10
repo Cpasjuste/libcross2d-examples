@@ -4,28 +4,18 @@
 
 #include "cross2d/c2d.h"
 
-#ifdef __PSP2__
-#define SCR_W 960
-#define SCR_H 544
-#define TEX_PATH "app0:/data/gbatemp.png"
-#elif __3DS__
-#define SCR_W 400
-#define SCR_H 240
-#define TEX_PATH "data/gbatemp.png"
-#else
-#define SCR_W 1280
-#define SCR_H 720
-#define TEX_PATH "data/gbatemp.png"
-#endif
-
 using namespace c2d;
 
 int main() {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({SCR_W, SCR_H});
+    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
-    auto *texture = new C2DTexture(TEX_PATH);
+    // create io helper
+    auto *io = new C2DIo();
+
+    // create a texture
+    auto *texture = new C2DTexture(io->getDataPath() + "gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(texture);
@@ -37,6 +27,7 @@ int main() {
         renderer->flip();
     }
 
+    delete(io);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 
