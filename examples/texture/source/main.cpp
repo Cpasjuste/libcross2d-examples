@@ -15,10 +15,14 @@ int main() {
     auto *io = new C2DIo();
 
     // create a texture
-    auto *texture = new C2DTexture(io->getDataPath() + "gbatemp.png");
+    auto *texture = new C2DTexture("/gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(texture);
+
+    auto *rect = new C2DRectangle({100, 100});
+    rect->setFillColor(Color::Blue);
+    renderer->add(rect);
 
     // main loop
     while (renderer->getElapsedTime().asSeconds() < 10) {
