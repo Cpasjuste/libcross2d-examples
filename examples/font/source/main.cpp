@@ -18,7 +18,7 @@ int main() {
         // some font have different offset..
         font->setOffset({0, -6});
         // create a text and add it to the renderer
-        auto *text = new C2DText("Hello (GBAtemp) World", *font, 100);
+        auto *text = new C2DText("Hello (GBAtemp) World", *font);
         text->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
         text->setOrigin(Origin::Center);
         text->setFillColor(Color::Cyan);
