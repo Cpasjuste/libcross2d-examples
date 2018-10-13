@@ -1,8 +1,7 @@
 Examples
 --------
-[texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture): drawing a simple texture...
-![image of texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture/texture_mini.png)
-
+- [texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture): drawing a simple texture...
+![image of texture](https://github.com/Cpasjuste/libcross2d-examples/raw/master/examples/texture/texture_mini.png)
 
 Build and run (Linux/deb)
 -------------------------
