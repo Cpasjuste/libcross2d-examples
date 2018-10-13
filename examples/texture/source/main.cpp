@@ -10,11 +10,12 @@ int main() {
 
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    renderer->setClearColor(Color::GrayLight);
 
     // create io helper
     auto *io = new C2DIo();
 
-    // create a texture
+    // create a texture and add it to the main renderer
     auto *texture = new C2DTexture(io->getDataPath() + "gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);

@@ -1,3 +1,9 @@
+Examples
+--------
+[texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture): drawing a simple texture...
+![image of texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture/texture_mini.png)
+
+
 Build and run (Linux/deb)
 -------------------------
 
@@ -20,6 +26,7 @@ Build and run (Nintendo Switch)
 -------------------------------
 
 - Install dependencies
+
     ```
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
     sudo dpkg -i devkitpro-pacman.deb
@@ -28,6 +35,7 @@ Build and run (Nintendo Switch)
     ```
 
 - Build
+
     ```
     git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
@@ -41,8 +49,24 @@ Build and run (Nintendo Switch)
 
 Build and run (Nintendo 3DS)
 ----------------------------
+
+- Install dependencies
+
     ```
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
     sudo dpkg -i devkitpro-pacman.deb
     sudo dkp-pacman -S 3ds-dev 3ds-zlib 3ds-freetype 3ds-libpng 3ds-pkg-config
     ```
+    
+- Build
+
+    ```
+    git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git
+    cd libcross2d-examples
+    mkdir cmake-build && cd cmake-build
+    export DEVKITPRO=/opt/devkitpro
+    cmake -DBUILD_3DS=1 ../
+    make texture.3dsx
+    make texture_3ds_release.zip
+    ```
+    
