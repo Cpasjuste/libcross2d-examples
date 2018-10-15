@@ -1,8 +1,9 @@
 ## A few cross2d examples
  [texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture): drawing a simple texture...\
- [font](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/font): drawing some text.\
+ [font](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/font): drawing some text\
  [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input): handle inputs (gamepads, keyboard on linux)\
- [fps](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps): all about timing.\
+ [fps](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps): all about timing\
+ [filer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/filer): a file manager example\
  [crazy](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy): some tweeny stuff...
 
 ## Build and run them...

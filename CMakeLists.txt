@@ -30,5 +30,8 @@ add_subdirectory(examples/input)
 # fps example
 add_subdirectory(examples/fps)
 
+# filer example
+add_subdirectory(examples/filer)
+
 # crazy example ?
 add_subdirectory(examples/crazy)

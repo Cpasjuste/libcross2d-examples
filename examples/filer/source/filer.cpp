@@ -1,0 +1,169 @@
+//
+// Created by cpasjuste on 12/04/18.
+//
+
+#include "filer.h"
+
+using namespace c2d;
+
+Filer::Filer(c2d::Io *io, const std::string &path, const c2d::Font &font,
+             int fontSize, const c2d::FloatRect &rect) : C2DRectangle(rect) {
+
+    this->io = io;
+    this->path = path;
+    this->setFillColor(Color::Transparent);
+
+    // create current path box
+    pathRect = new C2DRectangle({rect.width, fontSize + 10});
+    pathRect->setFillColor(Color::GrayLight);
+    pathRect->setOutlineColor(Color::Gray);
+    pathRect->setOutlineThickness(2);
+    pathText = new C2DText("/", font, (unsigned int) fontSize);
+    pathText->setOutlineThickness(2);
+    pathText->setOrigin(Origin::Left);
+    pathText->setPosition(4, (pathRect->getSize().y / 2));
+    pathText->setSizeMax(rect.width - 8, 0);
+    pathRect->add(pathText);
+    add(pathRect);
+
+    float y = pathRect->getGlobalBounds().top + pathRect->getGlobalBounds().height;
+    FloatRect r = {0, y + 8, rect.width, rect.height - y - 8};
+    listBox = new ListBox(font, fontSize, r, std::vector<Io::File>());
+    listBox->setFillColor(Color::GrayLight);
+    listBox->setOutlineColor(Color::Gray);
+    listBox->setOutlineThickness(2);
+    listBox->setTextOutlineThickness(2);
+    listBox->setHighlightThickness(2);
+    listBox->setHighlightColor(Color::White);
+    listBox->setHighlightOutlineColor(Color::Black);
+    listBox->setHighlightUseFileColor(false);
+    auto *tween = new TweenAlpha(50, 100, 0.6f, TweenLoop::PingPong);
+    listBox->setHighlightTween(tween);
+
+    add(listBox);
+
+    if (!getDir(path)) {
+        getDir("/");
+    }
+}
+
+bool Filer::getDir(const std::string &p) {
+
+    if (io->getType(p) != Io::Type::Directory) {
+        return false;
+    }
+
+    printf("getDir(%s)\n", p.c_str());
+
+    path = p;
+    index = 0;
+    files = io->getDirList(path, true);
+    if (files.empty()) {
+        Io::File file;
+        file.type = Io::Type::Directory;
+        file.name = "..";
+        files.push_back(file);
+    }
+    for (auto &file : files) {
+        file.color = file.type == Io::Type::Directory ?
+                     Color::Cyan : Color::White;
+    }
+
+    listBox->setFiles(files);
+    listBox->setSelection(0);
+
+    pathText->setString(this->path);
+
+    return true;
+}
+
+Io::File Filer::step(unsigned int keys) {
+
+    if (keys & Input::Key::KEY_UP) {
+        up();
+    } else if (keys & Input::Key::KEY_DOWN) {
+        down();
+    } else if (keys & Input::Key::KEY_RIGHT) {
+        right();
+    } else if (keys & Input::Key::KEY_LEFT) {
+        left();
+    } else if (keys & Input::Key::KEY_FIRE1) {
+        enter();
+    } else if (keys & Input::Key::KEY_FIRE2) {
+        exit();
+    }
+
+    return listBox->getSelection();
+}
+
+void Filer::down() {
+    index++;
+    if (index >= (int) listBox->getFiles().size()) {
+        index = 0;
+    }
+    listBox->setSelection(index);
+}
+
+void Filer::up() {
+    index--;
+    if (index < 0)
+        index = (int) (listBox->getFiles().size() - 1);
+    listBox->setSelection(index);
+}
+
+void Filer::left() {
+    index -= listBox->getMaxLines();
+    if (index < 0)
+        index = 0;
+    listBox->setSelection(index);
+}
+
+void Filer::right() {
+    index += listBox->getMaxLines();
+    if (index >= (int) listBox->getFiles().size())
+        index = (int) (listBox->getFiles().size() - 1);
+    listBox->setSelection(index);
+}
+
+void Filer::enter() {
+
+    if (listBox->getSelection().name == "..") {
+        exit();
+        return;
+    }
+
+    if (path == "/") {
+        getDir(path + listBox->getSelection().name);
+    } else {
+        getDir(path + "/" + listBox->getSelection().name);
+    }
+}
+
+void Filer::exit() {
+
+    if (path == "/" || path.find('/') == std::string::npos) {
+        return;
+    }
+
+    while (path.back() != '/') {
+        path.erase(path.size() - 1);
+    }
+
+    if (path.size() > 1 && Utility::endsWith(path, "/")) {
+        path.erase(path.size() - 1);
+    }
+
+    getDir(path);
+}
+
+std::string Filer::getPath() {
+    return path;
+}
+
+c2d::Io::File Filer::getSelection() {
+    return listBox->getSelection();
+}
+
+Filer::~Filer() {
+    files.clear();
+}
