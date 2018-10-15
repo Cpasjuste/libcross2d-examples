@@ -25,7 +25,7 @@
 - [pfba](https://github.com/Cpasjuste/pfba)
 - [psnes](https://github.com/Cpasjuste/psnes)
 
-## Build and run them...
+## Build and run examples...
 ### On Linux (deb)
 - Install dependencies  
     ```  
