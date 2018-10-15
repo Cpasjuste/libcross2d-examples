@@ -8,7 +8,7 @@ using namespace c2d;
 
 int main() {
 
-    char fps[32];
+    char fps[64];
 
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
@@ -21,15 +21,16 @@ int main() {
     }
 
     // create a text and add it to the renderer
-    auto *text = new C2DText("FPS: 60/60", *font, 100);
-    text->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
-    text->setOrigin(Origin::Center);
+    auto *text = new C2DText("FPS: 60/60", *font);
     renderer->add(text);
 
     // main loop
     while (renderer->getElapsedTime().asSeconds() < 10) {
 
-        snprintf(fps, 31, "FPS: %.2g/60", renderer->getFps());
+        snprintf(fps, 63, "FPS: %.2g/60\nDELTA: %f\nTIME: %f",
+                 renderer->getFps(),
+                 renderer->getDeltaTime().asSeconds(),
+                 renderer->getElapsedTime().asSeconds());
         text->setString(fps);
 
         // draw everything
