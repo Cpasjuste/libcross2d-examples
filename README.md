@@ -10,8 +10,9 @@
 - use some of the great [sfml](https://www.sfml-dev.org/) library stuff (fonts, shapes, matrices)
 - use [tweeny](https://github.com/mobius3/tweeny) for the (minimal) tween engine
 - use some of the great [libretro](https://github.com/libretro/glsl-shaders) shaders (Linux, Switch)
-- preliminary developed for my own use, but could now probably be used to ease development
-- is still a work in progress
+- use some [citro2d](https://github.com/devkitPro/citro2d) code for the 3ds renderer
+- use some [vita2d](https://github.com/xerpi/libvita2d) code for the vita renderer
+- preliminary developed for my own use, still a work in progress
 
 ## A few cross2d examples
  - [texture](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture): drawing a simple texture...
