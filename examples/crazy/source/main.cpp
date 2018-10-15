@@ -37,6 +37,8 @@ void addTweenShape(C2DIo *io, C2DRectangle *rect, int count) {
             shape->add(tweenScale);
         } else {
             shape = new C2DTexture(io->getDataPath() + "gbatemp.png");
+            shape->setOutlineColor({color(mt), color(mt), color(mt)});
+            shape->setOutlineThickness(2);
             ((C2DTexture *) shape)->setPosition(r.left, r.top);
             float from = scale(mt) / 2;
             float to = scale(mt) / 2;
@@ -140,8 +142,8 @@ int main() {
         // update fps
         snprintf(info, 128,
                  "libcross2d \"crazy example\"\n"
-                 "press dpad to do some stuff\nfps: %.2g/60, obj: %i",
-                 renderer->getFps(), (int) rect->getChilds().size());
+                 "press dpad to do some stuff\nfps: %.2g/60, tris: %i",
+                 renderer->getFps(), (int) rect->getChilds().size() * 10);
         text->setString(info);
 
         // draw everything
@@ -149,7 +151,7 @@ int main() {
     }
 
     // cleanup
-    delete(io);
+    delete (io);
     delete (input);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
