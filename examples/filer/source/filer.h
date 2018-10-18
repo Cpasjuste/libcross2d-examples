@@ -20,9 +20,11 @@ public:
 
     std::string getPath();
 
-    c2d::Io::File step(unsigned int keys);
+    bool step(unsigned int keys);
 
     c2d::Io::File getSelection();
+
+private:
 
     void down();
 
@@ -35,8 +37,6 @@ public:
     void enter();
 
     void exit();
-
-private:
 
     std::string path;
     std::vector<c2d::Io::File> files;

@@ -22,11 +22,8 @@ int main() {
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
     renderer->setClearColor(Color::GrayLight);
 
-    // create io helper
-    auto *io = new C2DIo();
-
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)
-    Config *config = new Config("C2D_CFG", io->getHomePath() + "config.cfg");
+    Config *config = new Config("C2D_CFG", renderer->getIo()->getHomePath() + "config.cfg");
     // add a section to the configuration
     addConfigSection(config);
     // load the configuration from file, overwriting default values (added in addConfigSection)
@@ -40,7 +37,7 @@ int main() {
 
     // loop through all sections and options
     for (auto &section : *config->getSections()) {
-        printf("\n%s\n", section.getName().c_str());
+        printf("\n%s:\n", section.getName().c_str());
         for (auto &option : *section.getOptions()) {
             if (option.getType() == Option::Type::Integer) {
                 printf("\t%s: %i\n", option.getName().c_str(), option.getInteger());
@@ -58,7 +55,12 @@ int main() {
     config->save();
 
     // main loop
-    while (renderer->getElapsedTime().asSeconds() < 10) {
+    while (true) {
+
+        // stop if any key is pressed
+        if (renderer->getInput()->getKeys()) {
+            break;
+        }
 
         // draw everything
         renderer->flip();
@@ -66,7 +68,6 @@ int main() {
 
     // cleanup
     delete (config);
-    delete (io);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

@@ -7,7 +7,7 @@
 
 using namespace c2d;
 
-void addTweenShape(C2DIo *io, C2DRectangle *rect, int count) {
+void addTweenShape(Io *io, C2DRectangle *rect, int count) {
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -80,14 +80,9 @@ int main() {
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
-    // create io helper
-    auto *io = new C2DIo();
-
-    // init inputs
-    auto *input = new C2DInput();
-    input->setRepeatEnable(true);
-    input->setJoystickMapping(0, C2D_DEFAULT_JOY_KEYS);
-    input->setKeyboardMapping(C2D_DEFAULT_KB_KEYS);
+    // set key repeat to 1 sec
+    renderer->getInput()->setRepeatEnable(true);
+    renderer->getInput()->setRepeatDelay(1000);
 
     // load default font
     auto *font = new C2DFont();
@@ -105,7 +100,7 @@ int main() {
     renderer->add(rect);
 
     // add some shapes to the rect
-    addTweenShape(io, rect, 100);
+    addTweenShape(renderer->getIo(), rect, 100);
 
     // set text in front of everything
     text->setLayer(2);
@@ -113,7 +108,7 @@ int main() {
     // main loop
     while (true) {
 
-        unsigned int keys = input->update()[0].state;
+        unsigned int keys = renderer->getInput()->getKeys();
         if (keys) {
             // "special" close/quit event send by sdl2 windows (linux platform)
             if (keys & EV_QUIT) {
@@ -125,7 +120,7 @@ int main() {
             }
 
             if (keys & Input::Key::KEY_UP) {
-                addTweenShape(io, rect, 10);
+                addTweenShape(renderer->getIo(), rect, 10);
                 text->setLayer(2);
             } else if (keys & Input::Key::KEY_DOWN) {
                 removeTweenShape(rect, 10);
@@ -134,7 +129,7 @@ int main() {
                 removeTweenShape(rect, 100);
                 text->setLayer(2);
             } else if (keys & Input::Key::KEY_RIGHT) {
-                addTweenShape(io, rect, 100);
+                addTweenShape(renderer->getIo(), rect, 100);
                 text->setLayer(2);
             }
         }
@@ -151,8 +146,6 @@ int main() {
     }
 
     // cleanup
-    delete (io);
-    delete (input);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 
