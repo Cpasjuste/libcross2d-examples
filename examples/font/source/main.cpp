@@ -28,7 +28,12 @@ int main() {
     }
 
     // main loop
-    while (renderer->getElapsedTime().asSeconds() < 10) {
+    while (true) {
+
+        // stop if any key is pressed
+        if (renderer->getInput()->getKeys()) {
+            break;
+        }
 
         // draw everything
         renderer->flip();

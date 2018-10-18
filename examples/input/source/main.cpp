@@ -13,27 +13,18 @@ int main() {
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
-    // create io helper
-    auto *io = new C2DIo();
-
     // create a texture
-    auto *texture = new C2DTexture(io->getDataPath() + "gbatemp.png");
+    auto *texture = new C2DTexture(renderer->getIo()->getDataPath() + "gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(texture);
 
-    // init inputs
-    auto *input = new C2DInput();
-    input->setJoystickMapping(0, C2D_DEFAULT_JOY_KEYS);
-    input->setKeyboardMapping(C2D_DEFAULT_KB_KEYS);
-
     // main loop
     while (true) {
 
-        // update inputs and get player 1 keys state
-        unsigned int keys = input->update()[0].state;
+        // get player 1 keys state
+        unsigned int keys = renderer->getInput()->getKeys();
         if (keys) {
-
             // "special" close/quit event send by sdl2 windows (linux platform)
             if (keys & EV_QUIT) {
                 break;
@@ -65,8 +56,6 @@ int main() {
     }
 
     // cleanup
-    delete(io);
-    delete (input);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

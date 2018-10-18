@@ -25,7 +25,12 @@ int main() {
     renderer->add(text);
 
     // main loop
-    while (renderer->getElapsedTime().asSeconds() < 10) {
+    while (true) {
+
+        // stop if any key is pressed
+        if (renderer->getInput()->getKeys()) {
+            break;
+        }
 
         snprintf(fps, 63, "FPS: %.2g/60\nDELTA: %f\nTIME: %f",
                  renderer->getFps(),

@@ -59,25 +59,23 @@ bool Filer::getDir(const std::string &p) {
     index = 0;
     files = io->getDirList(path, true);
     if (files.empty()) {
-        Io::File file;
-        file.type = Io::Type::Directory;
-        file.name = "..";
-        files.push_back(file);
+        // add up/back ("..")
+        files.emplace_back("..", "..", Io::Type::Directory, Color::White);
+        return false;
     }
     for (auto &file : files) {
         file.color = file.type == Io::Type::Directory ?
-                     Color::Cyan : Color::White;
+                     Color::Yellow : Color::White;
     }
 
     listBox->setFiles(files);
     listBox->setSelection(0);
-
     pathText->setString(this->path);
 
     return true;
 }
 
-Io::File Filer::step(unsigned int keys) {
+bool Filer::step(unsigned int keys) {
 
     if (keys & Input::Key::KEY_UP) {
         up();
@@ -88,12 +86,15 @@ Io::File Filer::step(unsigned int keys) {
     } else if (keys & Input::Key::KEY_LEFT) {
         left();
     } else if (keys & Input::Key::KEY_FIRE1) {
+        if (getSelection().type == Io::Type::File) {
+            return true;
+        }
         enter();
     } else if (keys & Input::Key::KEY_FIRE2) {
         exit();
     }
 
-    return listBox->getSelection();
+    return false;
 }
 
 void Filer::down() {
@@ -127,15 +128,17 @@ void Filer::right() {
 
 void Filer::enter() {
 
-    if (listBox->getSelection().name == "..") {
+    Io::File file = listBox->getSelection();
+
+    if (file.name == "..") {
         exit();
         return;
     }
 
     if (path == "/") {
-        getDir(path + listBox->getSelection().name);
+        getDir(path + file.name);
     } else {
-        getDir(path + "/" + listBox->getSelection().name);
+        getDir(path + "/" + file.name);
     }
 }
 
