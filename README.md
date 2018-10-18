@@ -1,10 +1,12 @@
 ## libcross2d
 
-- a c++ cross platform 2d graphic, input and audio library
+- a c++ cross platform 2d graphic, input, audio and config library
 - currently run on Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
 - draw rectangles, circles, textures and more with ease
 - basic tween engine (move, rotate, scale, color)
-- pack your application (zip) for release on any target including target resources (data/common)
+- clock/timer classes
+- configuration file handling
+- pack your application (zip) for release on any target, including resources (data/common)
 - quickly prototype your application on desktop (Linux)
 - use hardware acceleration on Linux, Switch, 3DS and PS Vita
 - use some of the great [sfml](https://www.sfml-dev.org/) library stuff (fonts, shapes, matrices)
@@ -12,6 +14,7 @@
 - use some of the great [libretro](https://github.com/libretro/glsl-shaders) shaders (Linux, Switch)
 - use some [citro2d](https://github.com/devkitPro/citro2d) code for the 3ds renderer
 - use some [vita2d](https://github.com/xerpi/libvita2d) code for the vita renderer
+- use [libconfig](https://github.com/hyperrealm/libconfig) for the configuration classes
 - preliminary developed for my own use, still a work in progress
 
 ## A few cross2d examples
