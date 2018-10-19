@@ -84,11 +84,8 @@ int main() {
     renderer->getInput()->setRepeatEnable(true);
     renderer->getInput()->setRepeatDelay(1000);
 
-    // load default font
-    auto *font = new C2DFont();
-    font->load();
     // create fps text and add it to the renderer
-    auto *text = new C2DText("FPS: 60/60", *font);
+    auto *text = new C2DText("FPS: 60/60");
     text->setOrigin(Origin::BottomRight);
     text->setPosition(renderer->getSize().x - 5, renderer->getSize().y - 80);
     text->setOutlineThickness(1);

@@ -13,15 +13,8 @@ int main() {
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
-    // load default font
-    auto *font = new C2DFont();
-    if (!font->load()) {
-        delete (renderer);
-        return -1;
-    }
-
     // create a text and add it to the renderer
-    auto *text = new C2DText("FPS: 60/60", *font);
+    auto *text = new C2DText("FPS: 60/60");
     renderer->add(text);
 
     // main loop
@@ -43,7 +36,6 @@ int main() {
     }
 
     // cleanup
-    delete (font);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

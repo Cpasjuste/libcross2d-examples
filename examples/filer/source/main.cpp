@@ -17,12 +17,8 @@ int main() {
     renderer->getInput()->setRepeatEnable(true);
     renderer->getInput()->setRepeatDelay(1000);
 
-    // create and load default font
-    auto *font = new C2DFont();
-    font->load();
-
     // create the filer
-    auto *filer = new Filer(renderer->getIo(), "/", *font, 22,
+    auto *filer = new Filer(renderer->getIo(), "/", renderer->getFont(), 22,
                             {16, 16, (renderer->getSize().x / 2) - 16, renderer->getSize().y - 32});
     renderer->add(filer);
 
@@ -51,7 +47,6 @@ int main() {
     }
 
     // cleanup
-    delete (font);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

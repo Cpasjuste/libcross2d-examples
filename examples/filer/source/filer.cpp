@@ -6,7 +6,7 @@
 
 using namespace c2d;
 
-Filer::Filer(c2d::Io *io, const std::string &path, const c2d::Font &font,
+Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
              int fontSize, const c2d::FloatRect &rect) : C2DRectangle(rect) {
 
     this->io = io;

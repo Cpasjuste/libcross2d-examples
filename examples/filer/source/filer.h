@@ -11,7 +11,7 @@ class Filer : public c2d::C2DRectangle {
 
 public:
 
-    Filer(c2d::Io *io, const std::string &path, const c2d::Font &font,
+    Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
           int fontSize, const c2d::FloatRect &rect);
 
     ~Filer();

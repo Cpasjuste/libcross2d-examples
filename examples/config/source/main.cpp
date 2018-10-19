@@ -2,6 +2,7 @@
 // Created by cpasjuste on 08/12/16.
 //
 
+#include <sstream>
 #include "cross2d/c2d.h"
 
 using namespace c2d;
@@ -15,9 +16,9 @@ void addConfigGroup(Config *config) {
     group.addOption({"STRING", "Hello World"});
     group.addOption({"FLOAT", 9.99f});
 
-    // add a child group
+    // add a child group to demo group
     Group child("CHILD");
-    child.addOption({"INTEGER", 777});
+    child.addOption({"INTEGER", 11});
     group.addGroup(child);
 
     // add all that to the main config
@@ -44,20 +45,24 @@ int main() {
     // note that you would normally check for a null pointer before "getInteger"
     printf("DEMO->INTEGER = %i\n", config->getOption("DEMO", "INTEGER")->getInteger());
 
-
+    // create some text (width default font), for fun
+    auto *text = new C2DText();
+    std::ostringstream os;
     // loop through all groups and options
     for (auto &group : *config->getGroups()) {
-        printf("\n%s:\n", group.getName().c_str());
+        os << group.getName() << "\n";
         for (auto &option : *group.getOptions()) {
             if (option.getType() == Option::Type::Integer) {
-                printf("\t%s: %i\n", option.getName().c_str(), option.getInteger());
+                os << "\t" << option.getName() << ": " << option.getInteger() << "\n";
             } else if (option.getType() == Option::Type::Float) {
-                printf("\t%s: %f\n", option.getName().c_str(), option.getFloat());
+                os << "\t" << option.getName() << ": " << option.getFloat() << "\n";
             } else {
-                printf("\t%s: %s\n", option.getName().c_str(), option.getString().c_str());
+                os << "\t" << option.getName() << ": " << option.getString() << "\n";
             }
         }
     }
+    text->setString(os.str());
+    renderer->add(text);
 
     // change an option and save the new configuration, next time we load this example
     // the "INTEGER" option from "DEMO" group will return "20"

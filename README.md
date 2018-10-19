@@ -2,7 +2,7 @@
 
 - a c++ cross platform 2d [graphic](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture), [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input), audio and [config](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) library
 - currently run on Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
-- draw rectangles, circles, textures and more with ease
+- draw rectangles, circles, textures, text (embedded, TTF) and more
 - basic [tween](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy) engine (move, rotate, scale, color)
 - [clock/timer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps) classes
 - [configuration](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) file handling
