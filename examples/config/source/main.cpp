@@ -10,10 +10,10 @@ using namespace c2d::config;
 void addConfigSection(Config *config) {
 
     Section section("DEMO");
-    section.add({"INTEGER", 10});
-    section.add({"STRING", "Hello World"});
-    section.add({"FLOAT", 9.99f});
-    config->add(section);
+    section.addOption({"INTEGER", 10});
+    section.addOption({"STRING", "Hello World"});
+    section.addOption({"FLOAT", 9.99f});
+    config->addSection(section);
 }
 
 int main() {
