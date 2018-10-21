@@ -18,7 +18,7 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
     pathRect->setFillColor(Color::GrayLight);
     pathRect->setOutlineColor(Color::Gray);
     pathRect->setOutlineThickness(2);
-    pathText = new C2DText("/", font, (unsigned int) fontSize);
+    pathText = new C2DText("/", (unsigned int) fontSize, font);
     pathText->setOutlineThickness(2);
     pathText->setOrigin(Origin::Left);
     pathText->setPosition(4, (pathRect->getSize().y / 2));
