@@ -16,7 +16,7 @@ int main() {
     text->setOrigin(Origin::Center);
     text->setFillColor(Color::Cyan);
     text->setOutlineColor(Color::Blue);
-    text->setOutlineThickness(5);
+    text->setOutlineThickness(2);
     renderer->add(text);
 
     // main loop
