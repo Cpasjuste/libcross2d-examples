@@ -48,7 +48,7 @@
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
-    cmake -DBUILD_SDL2=1 ../
+    cmake -DBUILD_LINUX=1 ../
     make texture.elf
     cd examples/texture && ./texture.elf
     ```
