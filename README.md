@@ -107,13 +107,16 @@
     make texture_vita_release.zip
     ```
 #### On Windows (For Windows)
-- Install dependencies
+- Install dependencies (from a working devkitpro installation)
     ```
     echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
     pacman -Syuu
     pacman -Sy bash git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-SDL2 mingw-w64-x86_64-freetype mingw-w64-x86_64-glm mingw-w64-x86_64-glew mingw-w64-x86_64-mesa
     ```
 - Then
+    ```
+    C:\devkitPro\msys2> .\msys2_shell.bat -mingw64
+    ```
     ```
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
