@@ -101,7 +101,7 @@
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
-    export DEVKITPRO=/opt/devkitpro
+    export VITASDK=/usr/local/vitasdk
     cmake -DBUILD_VITA=1 ../
     make texture.vpk
     make texture_vita_release.zip
