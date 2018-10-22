@@ -107,7 +107,7 @@
     make texture_vita_release.zip
     ```
 #### On Windows (For Windows)
-- Install dependencies (from a working devkitpro installation)
+- Install dependencies (from a working devkitPro installation, or preferably a mingw-w64 installation)
     ```
     echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
     pacman -Syuu
