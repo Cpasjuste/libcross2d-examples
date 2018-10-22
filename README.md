@@ -31,7 +31,10 @@
 - [psnes](https://github.com/Cpasjuste/psnes)
 
 ## Build and run...
-### On Linux (deb)
+1. [Linux](#on-linux)
+2. [Windows](#on-windows)
+
+#### On Linux
 - Install dependencies  
     ```  
     sudo apt-get install build-essential cmake git libsdl2-dev libfreetype6-dev libglm-dev  
@@ -45,7 +48,7 @@
     make texture.elf
     cd examples/texture && ./examples/texture/texture.elf
     ```
-### On Windows (MSYS/MinGW)
+#### On Windows
 - Install dependencies
     ```
     echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
@@ -60,7 +63,7 @@
     cmake -G "MSYS Makefiles" -DBUILD_WINDOWS=1 ../
     make texture.elf
     cd examples/texture && ./examples/texture/texture.elf
-```
+    ```
 ### On Nintendo Switch
 - Install dependencies
     ```  
