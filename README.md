@@ -2,13 +2,13 @@
 
 - a c++ cross platform 2d [graphic](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture), [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input), audio and [config](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) library
 - currently run on Windows, Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
-- draw rectangles, circles, textures, text (embedded, TTF) and more
+- draw textures, rectangles, circles, texts (TrueType) and more
 - basic [tween](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy) engine (move, rotate, scale, color)
 - [clock/timer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps) classes
 - [configuration](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) file handling
 - pack your application (zip) for release on any target, including resources (data/common)
-- quickly prototype your application on desktop (Linux)
-- use hardware acceleration on Linux, Switch, 3DS and PS Vita
+- quickly prototype your application on desktop (Linux and Windows)
+- use hardware acceleration on Linux, Windows, Switch, 3DS and PS Vita
 - use some of the great [sfml](https://www.sfml-dev.org/) library stuff (fonts, shapes, matrices)
 - use [tweeny](https://github.com/mobius3/tweeny) for the (minimal) tween engine
 - use some of the great [libretro](https://github.com/libretro/glsl-shaders) shaders (Linux, Switch)
@@ -23,6 +23,7 @@
  - [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input): handle inputs (gamepads, keyboard on linux)
  - [fps](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps): all about timing (fps, time, delta)
  - [config](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config): handle a configuration file
+ - [configbox](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/configbox): draw a configuration to screen
  - [filer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/filer): a file manager example
  - [crazy](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy): some tweeny stuff...
 
