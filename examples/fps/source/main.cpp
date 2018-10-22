@@ -6,7 +6,7 @@
 
 using namespace c2d;
 
-int main() {
+int main(int argc, char **argv) {
 
     char fps[64];
 

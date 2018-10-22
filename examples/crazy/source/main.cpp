@@ -73,7 +73,7 @@ void removeTweenShape(C2DRectangle *rect, int count) {
     }
 }
 
-int main() {
+int main(int argc, char **argv) {
 
     char info[128];
 

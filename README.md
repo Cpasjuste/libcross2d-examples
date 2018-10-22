@@ -1,7 +1,7 @@
 ## libcross2d
 
 - a c++ cross platform 2d [graphic](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture), [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input), audio and [config](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) library
-- currently run on Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
+- currently run on Windows, Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
 - draw rectangles, circles, textures, text (embedded, TTF) and more
 - basic [tween](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy) engine (move, rotate, scale, color)
 - [clock/timer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps) classes
@@ -38,13 +38,29 @@
     ```  
 - Then  
     ```  
-    git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git  
-    cd libcross2d-examples  
-    mkdir cmake-build && cd cmake-build  
-    cmake -DBUILD_SDL2=1 ../  
-    make  
-    ./examples/texture/texture.elf  
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
+    cd libcross2d-examples
+    mkdir cmake-build && cd cmake-build
+    cmake -DBUILD_SDL2=1 ../
+    make texture.elf
+    cd examples/texture && ./examples/texture/texture.elf
     ```
+### On Windows (MSYS/MinGW)
+- Install dependencies
+    ```
+    echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
+    pacman -Syuu
+    pacman -Sy bash git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-SDL2 mingw-w64-x86_64-freetype mingw-w64-x86_64-glm mingw-w64-x86_64-glew mingw-w64-x86_64-mesa
+    ```
+- Then
+    ```
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
+    cd libcross2d-examples
+    mkdir cmake-build && cd cmake-build
+    cmake -G "MSYS Makefiles" -DBUILD_WINDOWS=1 ../
+    make texture.elf
+    cd examples/texture && ./examples/texture/texture.elf
+```
 ### On Nintendo Switch
 - Install dependencies
     ```  
@@ -55,7 +71,7 @@
     ```
 - Then
     ```  
-    git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git  
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     export DEVKITPRO=/opt/devkitpro  
@@ -72,7 +88,7 @@
     ```   
 - Then
     ```  
-    git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git  
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     export DEVKITPRO=/opt/devkitpro  
@@ -92,7 +108,7 @@
     ```   
 - Then
     ```
-    git clone --recursive git@github.com:Cpasjuste/libcross2d-examples.git
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
     export DEVKITPRO=/opt/devkitpro

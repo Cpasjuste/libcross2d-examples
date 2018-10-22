@@ -25,7 +25,7 @@ void addConfigGroup(Config *config) {
     config->addGroup(group);
 }
 
-int main() {
+int main(int argc, char **argv) {
 
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});

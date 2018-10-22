@@ -36,7 +36,6 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
     listBox->getHighlight()->setOutlineThickness(2);
     listBox->getHighlight()->setFillColor(Color::White);
     listBox->getHighlight()->setOutlineColor(Color::Black);
-    listBox->setHighlightUseFileColor(false);
     listBox->getHighlight()->add(new TweenAlpha(50, 100, 0.6f, TweenLoop::PingPong));
 
     add(listBox);
