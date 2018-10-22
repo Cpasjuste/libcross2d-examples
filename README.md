@@ -1,7 +1,7 @@
 ## libcross2d
 
 - a c++ cross platform 2d [graphic](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/texture), [input](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/input), audio and [config](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/config) library
-- currently run on Windows, Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
+- run on Windows, Linux, Nintendo Switch, Nintendo 3DS and Sony PS Vita
 - draw textures, rectangles, circles, texts (TrueType) and more
 - basic [tween](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy) engine (move, rotate, scale, color)
 - [clock/timer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/fps) classes
