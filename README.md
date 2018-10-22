@@ -31,10 +31,13 @@
 - [psnes](https://github.com/Cpasjuste/psnes)
 
 ## Build and run...
-1. [Linux](#on-linux)
-2. [Windows](#on-windows)
+1. [On Linux For Linux](#on-linux-for-linux)
+2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch)
+2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds)
+2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita)
+3. [On Windows For Windows](#on-windows-for-windows)
 
-#### On Linux
+#### On Linux (For Linux)
 - Install dependencies  
     ```  
     sudo apt-get install build-essential cmake git libsdl2-dev libfreetype6-dev libglm-dev  
@@ -46,25 +49,9 @@
     mkdir cmake-build && cd cmake-build
     cmake -DBUILD_SDL2=1 ../
     make texture.elf
-    cd examples/texture && ./examples/texture/texture.elf
+    cd examples/texture && ./texture.elf
     ```
-#### On Windows
-- Install dependencies
-    ```
-    echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
-    pacman -Syuu
-    pacman -Sy bash git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-SDL2 mingw-w64-x86_64-freetype mingw-w64-x86_64-glm mingw-w64-x86_64-glew mingw-w64-x86_64-mesa
-    ```
-- Then
-    ```
-    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
-    cd libcross2d-examples
-    mkdir cmake-build && cd cmake-build
-    cmake -G "MSYS Makefiles" -DBUILD_WINDOWS=1 ../
-    make texture.elf
-    cd examples/texture && ./examples/texture/texture.elf
-    ```
-### On Nintendo Switch
+#### On Linux (For Nintendo Switch)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
@@ -82,7 +69,7 @@
     make texture.nro  
     make texture_switch_release.zip  
     ```
-### On Nintendo 3DS
+#### On Linux (For Nintendo 3DS)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
@@ -99,7 +86,7 @@
     make texture.3dsx  
     make texture_3ds_release.zip  
     ```
-### On Sony Ps Vita
+#### On Linux (For Sony Ps Vita)
 - Install dependencies
     ```  
     git clone https://github.com/vitasdk/vdpm
@@ -118,4 +105,20 @@
     cmake -DBUILD_VITA=1 ../
     make texture.vpk
     make texture_vita_release.zip
+    ```
+#### On Windows (For Windows)
+- Install dependencies
+    ```
+    echo -e "[mingw64]\nInclude = /etc/pacman.d/mirrorlist.mingw64" >> /etc/pacman.conf
+    pacman -Syuu
+    pacman -Sy bash git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-SDL2 mingw-w64-x86_64-freetype mingw-w64-x86_64-glm mingw-w64-x86_64-glew mingw-w64-x86_64-mesa
+    ```
+- Then
+    ```
+    git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
+    cd libcross2d-examples
+    mkdir cmake-build && cd cmake-build
+    cmake -G "MSYS Makefiles" -DBUILD_WINDOWS=1 ../
+    make texture.elf
+    cd examples/texture && ./texture.elf
     ```
