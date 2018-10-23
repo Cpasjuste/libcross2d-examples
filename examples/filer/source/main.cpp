@@ -35,10 +35,10 @@ int main(int argc, char **argv) {
 
         // update filer input
         if (filer->step(keys)) {
-            Io::File file = filer->getSelection();
-            if (Utility::endsWith(file.name, ".mkv")) {
+            Io::File *file = filer->getSelection();
+            if (Utility::endsWith(file->name, ".mkv")) {
                 // do somethine with this mkv file ;)
-                printf("mkv file selected: %s\n", file.path.c_str());
+                printf("mkv file selected: %s\n", file->path.c_str());
             }
         }
 

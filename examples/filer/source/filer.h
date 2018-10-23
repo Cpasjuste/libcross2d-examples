@@ -22,7 +22,7 @@ public:
 
     bool step(unsigned int keys);
 
-    c2d::Io::File getSelection();
+    c2d::Io::File *getSelection();
 
 private:
 

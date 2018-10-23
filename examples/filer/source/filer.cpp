@@ -28,7 +28,7 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
 
     float y = pathRect->getGlobalBounds().top + pathRect->getGlobalBounds().height;
     FloatRect r = {0, y + 8, rect.width, rect.height - y - 8};
-    listBox = new ListBox(font, fontSize, r);
+    listBox = new ListBox(font, fontSize, r, std::vector<Io::File>());
     listBox->setFillColor(Color::GrayLight);
     listBox->setOutlineColor(Color::Gray);
     listBox->setOutlineThickness(2);
@@ -84,7 +84,7 @@ bool Filer::step(unsigned int keys) {
     } else if (keys & Input::Key::KEY_LEFT) {
         left();
     } else if (keys & Input::Key::KEY_FIRE1) {
-        if (getSelection().type == Io::Type::File) {
+        if (getSelection()->type == Io::Type::File) {
             return true;
         }
         enter();
@@ -126,17 +126,17 @@ void Filer::right() {
 
 void Filer::enter() {
 
-    Io::File file = listBox->getSelection();
+    Io::File *file = listBox->getSelection();
 
-    if (file.name == "..") {
+    if (file->name == "..") {
         exit();
         return;
     }
 
     if (path == "/") {
-        getDir(path + file.name);
+        getDir(path + file->name);
     } else {
-        getDir(path + "/" + file.name);
+        getDir(path + "/" + file->name);
     }
 }
 
@@ -161,7 +161,7 @@ std::string Filer::getPath() {
     return path;
 }
 
-c2d::Io::File Filer::getSelection() {
+c2d::Io::File *Filer::getSelection() {
     return listBox->getSelection();
 }
 
