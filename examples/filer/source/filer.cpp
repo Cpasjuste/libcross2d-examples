@@ -22,13 +22,13 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
     pathText->setOutlineThickness(2);
     pathText->setOrigin(Origin::Left);
     pathText->setPosition(4, (pathRect->getSize().y / 2));
-    pathText->setSizeMax(rect.width - 8, 0);
+    pathText->setWidth(rect.width - 8);
     pathRect->add(pathText);
     add(pathRect);
 
     float y = pathRect->getGlobalBounds().top + pathRect->getGlobalBounds().height;
     FloatRect r = {0, y + 8, rect.width, rect.height - y - 8};
-    listBox = new ListBox(font, fontSize, r, std::vector<Io::File>());
+    listBox = new ListBox(font, fontSize, r);
     listBox->setFillColor(Color::GrayLight);
     listBox->setOutlineColor(Color::Gray);
     listBox->setOutlineThickness(2);
