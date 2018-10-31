@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # delete cmake cache folder before changing a build setting/option
-set(BUILD_LINUX OFF CACHE BOOL "Build with SDL2 support")
+set(BUILD_LINUX ON CACHE BOOL "Build with SDL2 support")
 set(BUILD_WINDOWS OFF CACHE BOOL "Build with Windows support (msys/mingw64)")
 set(BUILD_VITA OFF CACHE BOOL "Build with Ps Vita support")
 set(BUILD_PS3 OFF CACHE BOOL "Build with PS3 support")
