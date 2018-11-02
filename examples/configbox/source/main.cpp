@@ -14,6 +14,10 @@ void addConfigGroup(Config *config) {
     group.addOption({"INTEGER", 10});
     group.addOption({"STRING", "Hello World"});
     group.addOption({"FLOAT", 9.99f});
+    group.addOption({"VECTOR2F", Vector2f{10, 20}});
+    group.addOption({"FLOATRECT", FloatRect{10, 20, 30, 40}});
+    group.addOption({"COLOR", Color{255, 0, 0, 255}});
+    group.addOption({"CHOICE", std::vector<std::string>{"ON", "OFF", "MAYBE"}, 2});
 
     // add a child group to demo group
     Group child("CHILD");
