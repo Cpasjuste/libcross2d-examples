@@ -15,6 +15,9 @@ void addConfigGroup(Config *config) {
     group.addOption({"INTEGER", 10});
     group.addOption({"STRING", "Hello World"});
     group.addOption({"FLOAT", 9.99f});
+    group.addOption({"VECTOR2F", Vector2f{10, 20}});
+    group.addOption({"FLOATRECT", FloatRect{10, 20, 30, 40}});
+    group.addOption({"COLOR", Color{255, 0, 0, 255}});
 
     // add a child group to demo group
     Group child("CHILD");
@@ -56,8 +59,15 @@ int main(int argc, char **argv) {
                 os << "\t" << option.getName() << ": " << option.getInteger() << "\n";
             } else if (option.getType() == Option::Type::Float) {
                 os << "\t" << option.getName() << ": " << option.getFloat() << "\n";
-            } else {
+            } else if (option.getType() == Option::Type::String) {
                 os << "\t" << option.getName() << ": " << option.getString() << "\n";
+            } else if (option.getType() == Option::Type::Vector2f) {
+                os << "\t" << option.getName() << ": [" <<
+                   option.getVector2f().x << ", " << option.getVector2f().y << "]\n";
+            } else {
+                os << "\t" << option.getName() << ": [" <<
+                   option.getFloatRect().left << ", " << option.getFloatRect().top << ", " <<
+                   option.getFloatRect().width << ", " << option.getFloatRect().height << "]\n";
             }
         }
     }
