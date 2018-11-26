@@ -49,6 +49,11 @@ int main(int argc, char **argv) {
             if (keys & Input::Key::KEY_DOWN) {
                 texture->move({0, renderer->getDeltaTime().asSeconds() * SPEED});
             }
+
+            // basic touch support
+            if (keys & Input::Key::KEY_TOUCH) {
+                texture->setPosition(renderer->getInput()->getPlayer(0)->touch);
+            }
         }
 
         // draw everything
