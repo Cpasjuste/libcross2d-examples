@@ -71,25 +71,25 @@ int main(int argc, char **argv) {
             break;
         }
 
-        if (keys & Input::Key::KEY_UP) {
+        if (keys & Input::Key::Up) {
             configBox->navigate(ConfigBox::Navigation::Up);
-        } else if (keys & Input::Key::KEY_DOWN) {
+        } else if (keys & Input::Key::Down) {
             configBox->navigate(ConfigBox::Navigation::Down);
-        } else if (keys & Input::Key::KEY_LEFT) {
+        } else if (keys & Input::Key::Left) {
             if (configBox->getSelection()) {
                 //TODO: add multiple choice capability to Option?
             }
-        } else if (keys & Input::Key::KEY_RIGHT) {
+        } else if (keys & Input::Key::Right) {
             if (configBox->getSelection()) {
                 //TODO: add multiple choice capability to Option?
             }
-        } else if (keys & Input::Key::KEY_FIRE1) {
+        } else if (keys & Input::Key::Fire1) {
             Option *opt = configBox->navigate(ConfigBox::Navigation::Enter);
             if (opt) {
                 //TODO: handle option
                 printf("selection: %s -> %s\n", opt->getName().c_str(), opt->getString().c_str());
             }
-        } else if (keys & Input::Key::KEY_FIRE2) {
+        } else if (keys & Input::Key::Fire2) {
             configBox->navigate(ConfigBox::Navigation::Exit);
         }
 
