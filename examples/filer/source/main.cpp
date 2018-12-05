@@ -27,8 +27,8 @@ int main(int argc, char **argv) {
 
         // update inputs and get player 0 keys
         unsigned int keys = renderer->getInput()->getKeys();
-        if (((keys & c2d::Input::Key::KEY_START)
-             || (keys & c2d::Input::Key::KEY_COIN)
+        if (((keys & c2d::Input::Key::Start)
+             || (keys & c2d::Input::Key::Select)
              || (keys & EV_QUIT))) {
             break;
         }

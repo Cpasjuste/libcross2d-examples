@@ -17,6 +17,8 @@ int main(int argc, char **argv) {
     auto *texture = new C2DTexture(renderer->getIo()->getDataPath() + "gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
+    auto *tween = new TweenRotation(0, 360, 1);
+    texture->add(tween);
     renderer->add(texture);
 
     // main loop
@@ -24,30 +26,39 @@ int main(int argc, char **argv) {
 
         // get player 1 keys state
         unsigned int keys = renderer->getInput()->getKeys();
-        if (keys) {
+        if (keys > 0 && keys != Input::Key::Delay) {
+
             // "special" close/quit event send by sdl2 windows (linux platform)
             if (keys & EV_QUIT) {
                 break;
             }
 
             // exit if START or SELECT is pressed (+/- on switch)
-            if (keys & Input::Key::KEY_START || keys & Input::Key::KEY_COIN) {
+            if (keys & Input::Key::Start || keys & Input::Key::Select) {
                 break;
             }
 
             // move the texture
-            if (keys & Input::Key::KEY_LEFT) {
+            if (keys & Input::Key::Left) {
                 // move with delta time for smooth movement
                 texture->move({-(renderer->getDeltaTime().asSeconds() * SPEED), 0});
             }
-            if (keys & Input::Key::KEY_RIGHT) {
+            if (keys & Input::Key::Right) {
                 texture->move({renderer->getDeltaTime().asSeconds() * SPEED, 0});
             }
-            if (keys & Input::Key::KEY_UP) {
+            if (keys & Input::Key::Up) {
                 texture->move({0, -(renderer->getDeltaTime().asSeconds() * SPEED)});
             }
-            if (keys & Input::Key::KEY_DOWN) {
+            if (keys & Input::Key::Down) {
                 texture->move({0, renderer->getDeltaTime().asSeconds() * SPEED});
+            }
+
+            // basic touch support
+            if (keys & Input::Key::Touch) {
+                Vector2f touch = renderer->getInput()->getPlayer(0)->touch;
+                if (texture->getGlobalBounds().contains(touch)) {
+                    tween->play(TweenDirection::Forward, true);
+                }
             }
         }
 

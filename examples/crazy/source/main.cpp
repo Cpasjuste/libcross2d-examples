@@ -112,20 +112,20 @@ int main(int argc, char **argv) {
                 break;
             }
             // exit if START or SELECT is pressed (+/- on switch)
-            if (keys & Input::Key::KEY_START || keys & Input::Key::KEY_COIN) {
+            if (keys & Input::Key::Start || keys & Input::Key::Select) {
                 break;
             }
 
-            if (keys & Input::Key::KEY_UP) {
+            if (keys & Input::Key::Up) {
                 addTweenShape(renderer->getIo(), rect, 10);
                 text->setLayer(2);
-            } else if (keys & Input::Key::KEY_DOWN) {
+            } else if (keys & Input::Key::Down) {
                 removeTweenShape(rect, 10);
                 text->setLayer(2);
-            } else if (keys & Input::Key::KEY_LEFT) {
+            } else if (keys & Input::Key::Left) {
                 removeTweenShape(rect, 100);
                 text->setLayer(2);
-            } else if (keys & Input::Key::KEY_RIGHT) {
+            } else if (keys & Input::Key::Right) {
                 addTweenShape(renderer->getIo(), rect, 100);
                 text->setLayer(2);
             }
