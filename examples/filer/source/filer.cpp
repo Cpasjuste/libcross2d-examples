@@ -58,7 +58,7 @@ bool Filer::getDir(const std::string &p) {
     files = io->getDirList(path, true);
     if (files.empty()) {
         // add up/back ("..")
-        files.emplace_back("..", "..", Io::Type::Directory, Color::White);
+        files.emplace_back("..", "..", Io::Type::Directory, 0, Color::White);
         return false;
     }
     for (auto &file : files) {
