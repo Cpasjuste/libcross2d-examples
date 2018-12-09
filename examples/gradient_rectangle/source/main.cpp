@@ -15,19 +15,12 @@ public:
         setPosition(rect.left, rect.top);
     }
 
-    void setColor(const Color &color1, const Color &color2, bool vertical = false) {
+    void setColor(const Color &color1, const Color &color2) {
         auto *vertices = getVertexArray()->getVertices();
-        if (vertical) {
-            vertices->at(0).color = color1;
-            vertices->at(1).color = color1;
-            vertices->at(2).color = color2;
-            vertices->at(3).color = color2;
-        } else {
-            vertices->at(0).color = color2;
-            vertices->at(1).color = color1;
-            vertices->at(2).color = color2;
-            vertices->at(3).color = color1;
-        }
+        vertices->at(0).color = color1;
+        vertices->at(1).color = color2;
+        vertices->at(2).color = color1;
+        vertices->at(3).color = color2;
         getVertexArray()->update();
     }
 };
@@ -36,11 +29,11 @@ int main(int argc, char **argv) {
 
     // create the main renderer
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
-    renderer->setClearColor(Color::Black);
+    renderer->setClearColor(Color::Red);
 
     // create a texture and add it to the main renderer
     auto *rect = new GradientRectangle({0, 0, renderer->getSize().x, renderer->getSize().y});
-    rect->setColor(Color::Orange, Color::Cyan, false);
+    rect->setColor(Color::Transparent, Color::Black);
     renderer->add(rect);
 
     // main loop

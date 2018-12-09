@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     renderer->getInput()->setRepeatDelay(250);
 
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)
-    Config *config = new Config("C2D_CFG", renderer->getIo()->getHomePath() + "config.cfg");
+    Config *config = new Config("C2D_CFG", renderer->getIo()->getDataWritePath() + "config.cfg");
     // add a group to the configuration
     addConfigGroup(config);
     // load the configuration from file, overwriting default values (added in addConfigGroup)

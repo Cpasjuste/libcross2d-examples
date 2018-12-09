@@ -9,8 +9,7 @@ using namespace c2d;
 
 void addTweenShape(Io *io, C2DRectangle *rect, int count) {
 
-    std::random_device rd;
-    std::mt19937 mt(rd());
+    std::mt19937 mt((unsigned long) time(nullptr));
     std::uniform_real_distribution<float> x(0, rect->getSize().x);
     std::uniform_real_distribution<float> y(0, rect->getSize().y);
     std::uniform_real_distribution<float> w(10, 150);
@@ -36,7 +35,7 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
                     {scale(mt), scale(mt)}, scale(mt), TweenLoop::PingPong);
             shape->add(tweenScale);
         } else {
-            shape = new C2DTexture(io->getDataPath() + "gbatemp.png");
+            shape = new C2DTexture(io->getDataReadPath() + "gbatemp.png");
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
             shape->setOutlineThickness(2);
             ((C2DTexture *) shape)->setPosition(r.left, r.top);
