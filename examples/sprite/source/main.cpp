@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     renderer->setClearColor(Color::GrayLight);
 
     // create a texture for the sprite
-    auto *texture = new C2DTexture(renderer->getIo()->getDataPath() + "sprite_sheet.png");
+    auto *texture = new C2DTexture(renderer->getIo()->getDataReadPath() + "sprite_sheet.png");
     // create a sprite
     auto *sprite = new Sprite(texture, getTextureRect(texture, 0));
     sprite->setOrigin(Origin::Center);

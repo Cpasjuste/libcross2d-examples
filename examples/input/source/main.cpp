@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
     // create a texture
-    auto *texture = new C2DTexture(renderer->getIo()->getDataPath() + "gbatemp.png");
+    auto *texture = new C2DTexture(renderer->getIo()->getDataReadPath() + "gbatemp.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     auto *tween = new TweenRotation(0, 360, 1);
