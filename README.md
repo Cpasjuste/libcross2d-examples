@@ -32,10 +32,10 @@
 - [psnes](https://github.com/Cpasjuste/psnes)
 
 ## Build and run...
-1. [On Linux For Linux](#on-linux-for-linux)
-2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch)
-2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds)
-2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita)
+1. [On Linux For Linux](#on-linux-for-linux-DEB)
+2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch-DEB)
+2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds-DEB)
+2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita-DEB)
 3. [On Windows For Windows](#on-windows-for-windows)
 
 #### On Linux (For Linux, DEB)
