@@ -32,13 +32,13 @@
 - [psnes](https://github.com/Cpasjuste/psnes)
 
 ## Build and run...
-1. [On Linux For Linux](#on-linux-for-linux)
-2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch)
-2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds)
-2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita)
+1. [On Linux For Linux](#on-linux-for-linux-DEB)
+2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch-DEB)
+2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds-DEB)
+2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita-DEB)
 3. [On Windows For Windows](#on-windows-for-windows)
 
-#### On Linux (For Linux)
+#### On Linux (For Linux, DEB)
 - Install dependencies  
     ```  
     sudo apt-get install build-essential cmake git libsdl2-dev libfreetype6-dev libglm-dev libconfig-dev
@@ -52,7 +52,7 @@
     make texture.elf
     cd examples/texture && ./texture.elf
     ```
-#### On Linux (For Nintendo Switch)
+#### On Linux (For Nintendo Switch, DEB)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
@@ -69,7 +69,7 @@
     make texture.nro  
     make texture_switch_release.zip  
     ```
-#### On Linux (For Nintendo 3DS)
+#### On Linux (For Nintendo 3DS, DEB)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
@@ -86,7 +86,7 @@
     make texture.3dsx  
     make texture_3ds_release.zip  
     ```
-#### On Linux (For Sony Ps Vita)
+#### On Linux (For Sony Ps Vita, DEB)
 - Install dependencies
     ```  
     git clone https://github.com/vitasdk/vdpm
