@@ -35,7 +35,6 @@ int main(int argc, char **argv) {
     renderer->setClearColor(Color::GrayLight);
 
     // add some delay to inputs
-    renderer->getInput()->setRepeatEnable(true);
     renderer->getInput()->setRepeatDelay(250);
 
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)

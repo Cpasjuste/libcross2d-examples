@@ -14,8 +14,7 @@ int main(int argc, char **argv) {
     renderer->setClearColor(Color::White);
 
     // set auto-repeat delay
-    renderer->getInput()->setRepeatEnable(true);
-    renderer->getInput()->setRepeatDelay(1000);
+    renderer->getInput()->setRepeatDelay(250);
 
     // create the filer
     auto *filer = new Filer(renderer->getIo(), "/", renderer->getFont(), C2D_DEFAULT_CHAR_SIZE,

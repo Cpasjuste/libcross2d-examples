@@ -22,7 +22,7 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
     pathText->setOutlineThickness(2);
     pathText->setOrigin(Origin::Left);
     pathText->setPosition(4, (pathRect->getSize().y / 2));
-    pathText->setWidth(rect.width - 8);
+    pathText->setSizeMax(rect.width - 8, 0);
     pathRect->add(pathText);
     add(pathRect);
 
