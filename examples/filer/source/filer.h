@@ -44,7 +44,6 @@ private:
     c2d::ListBox *listBox;
     c2d::C2DRectangle *pathRect;
     c2d::Text *pathText;
-    int index = 0;
 };
 
 #endif //FILER_FILER_H

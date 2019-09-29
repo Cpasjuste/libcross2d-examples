@@ -33,16 +33,21 @@ const IntRect getTextureRect(C2DTexture *texture, int direction) {
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
     renderer->setClearColor(Color::GrayLight);
 
     // create a texture for the sprite
-    auto *texture = new C2DTexture(renderer->getIo()->getDataReadPath() + "sprite_sheet.png");
+    auto texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "sprite_sheet.png");
     // create a sprite
-    auto *sprite = new Sprite(texture, getTextureRect(texture, 0));
+    auto sprite = new Sprite(texture, getTextureRect(texture, 0));
     sprite->setOrigin(Origin::Center);
     sprite->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(sprite);
+
+    auto text = new C2DText("PRESS UP - DOWN - LEFT - RIGHT");
+    text->setOrigin(Origin::Center);
+    text->setPosition(sprite->getPosition().x, sprite->getPosition().y - 64);
+    renderer->add(text);
 
     // main loop
     while (true) {

@@ -54,7 +54,6 @@ bool Filer::getDir(const std::string &p) {
     printf("getDir(%s)\n", p.c_str());
 
     path = p;
-    index = 0;
     files = io->getDirList(path, true);
     if (files.empty()) {
         // add up/back ("..")
@@ -96,29 +95,23 @@ bool Filer::step(unsigned int keys) {
 }
 
 void Filer::down() {
-    index++;
-    if (index >= (int) listBox->getFiles().size()) {
-        index = 0;
-    }
-    listBox->setSelection(index);
+    listBox->down();
 }
 
 void Filer::up() {
-    index--;
-    if (index < 0)
-        index = (int) (listBox->getFiles().size() - 1);
-    listBox->setSelection(index);
+    listBox->up();
 }
 
 void Filer::left() {
-    index -= listBox->getMaxLines();
+    int index = listBox->getIndex() - listBox->getMaxLines();
     if (index < 0)
         index = 0;
+    listBox->getIndex();
     listBox->setSelection(index);
 }
 
 void Filer::right() {
-    index += listBox->getMaxLines();
+    int index = listBox->getIndex() + listBox->getMaxLines();
     if (index >= (int) listBox->getFiles().size())
         index = (int) (listBox->getFiles().size() - 1);
     listBox->setSelection(index);

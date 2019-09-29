@@ -31,14 +31,14 @@ void addConfigGroup(Config *config) {
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
     renderer->setClearColor(Color::GrayLight);
 
     // add some delay to inputs
     renderer->getInput()->setRepeatDelay(250);
 
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)
-    Config *config = new Config("C2D_CFG", renderer->getIo()->getDataWritePath() + "config.cfg");
+    auto config = new Config("C2D_CFG", renderer->getIo()->getDataPath() + "config.cfg");
     // add a group to the configuration
     addConfigGroup(config);
     // load the configuration from file, overwriting default values (added in addConfigGroup)
@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     }
 
     FloatRect configRect = {128, 128, renderer->getSize().x - 256, renderer->getSize().y - 256};
-    auto *configBox = new ConfigBox(renderer->getFont(), C2D_DEFAULT_CHAR_SIZE, configRect);
+    auto configBox = new ConfigBox(renderer->getFont(), C2D_DEFAULT_CHAR_SIZE, configRect);
     configBox->setLeftWidth(300);
     configBox->getListBoxLeft()->setFillColor(Color::Black);
     configBox->getListBoxLeft()->getHighlight()->setFillColor(Color::Gray);
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
     configBox->getListBoxRight()->setFillColor(Color::Gray);
     configBox->getListBoxRight()->getHighlight()->setOutlineColor(Color::Yellow);
     configBox->getListBoxRight()->getHighlight()->setOutlineThickness(1);
-    configBox->getListBoxRight()->getHighlight()->add(new TweenAlpha(80, 150, 0.5f, TweenLoop::PingPong));
+    configBox->getListBoxRight()->getHighlight()->add(new TweenAlpha(80, 150, 0.5f, TweenLoop::PingPong, TweenState::Playing));
     configBox->load(config->getGroup("DEMO"));
     renderer->add(configBox);
 

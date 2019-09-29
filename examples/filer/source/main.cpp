@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     renderer->getInput()->setRepeatDelay(250);
 
     // create the filer
-    auto *filer = new Filer(renderer->getIo(), "/", renderer->getFont(), C2D_DEFAULT_CHAR_SIZE,
+    auto *filer = new Filer(renderer->getIo(), "/", renderer->getFont(), 36,
                             {16, 16, (renderer->getSize().x / 2) - 16, renderer->getSize().y - 32});
     renderer->add(filer);
 

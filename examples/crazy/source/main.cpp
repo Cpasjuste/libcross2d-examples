@@ -30,12 +30,14 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
                     {color(mt), color(mt), color(mt)},
                     scale(mt), TweenLoop::PingPong);
             shape->add(tweenColor);
+            tweenColor->play();
             auto *tweenScale = new TweenScale(
                     {1.0f, 1.0f},
                     {scale(mt), scale(mt)}, scale(mt), TweenLoop::PingPong);
+            tweenScale->play();
             shape->add(tweenScale);
         } else {
-            shape = new C2DTexture(io->getDataReadPath() + "gbatemp.png");
+            shape = new C2DTexture(io->getRomFsPath() + "gbatemp.png");
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
             shape->setOutlineThickness(2);
             ((C2DTexture *) shape)->setPosition(r.left, r.top);
@@ -43,6 +45,7 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
             float to = scale(mt) / 2;
             auto *tweenScale = new TweenScale(
                     {from, from}, {to, to}, scale(mt), TweenLoop::PingPong);
+            tweenScale->play();
             shape->add(tweenScale);
         }
         shape->setOrigin(Origin::Center);
@@ -52,6 +55,7 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
                 3.0f, TweenLoop::PingPong);
         shape->add(tweenPos);
         auto *tweenRot = new TweenRotation(0, 360, 4.0f, TweenLoop::PingPong);
+        tweenRot->play();
         shape->add(tweenRot);
 
         rect->add(shape);
