@@ -32,13 +32,13 @@
 - [psnes](https://github.com/Cpasjuste/psnes)
 
 ## Build and run...
-1. [On Linux For Linux](#on-linux-for-linux-DEB)
-2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch-DEB)
-2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds-DEB)
-2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita-DEB)
+1. [On Linux For Linux](#on-linux-for-linux)
+2. [On Linux For Nintendo Switch](#on-linux-for-nintendo-switch)
+2. [On Linux For Nintendo 3DS](#on-linux-for-nintendo-3ds)
+2. [On Linux For Sony Ps Vita](#on-linux-for-sony-ps-vita)
 3. [On Windows For Windows](#on-windows-for-windows)
 
-#### On Linux (For Linux, DEB)
+#### On Linux (For Linux)
 - Install dependencies  
     ```  
     sudo apt-get install build-essential cmake git libsdl2-dev libfreetype6-dev libglm-dev libconfig-dev
@@ -48,16 +48,16 @@
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
-    cmake -DBUILD_LINUX=1 ../
-    make texture.elf
-    cd examples/texture && ./texture.elf
+    cmake -DPLATFORM_LINUX=ON -DCMAKE_BUILD_TYPE=Release ../
+    make texture
+    cd examples/texture && ./texture
     ```
-#### On Linux (For Nintendo Switch, DEB)
+#### On Linux (For Nintendo Switch)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
     sudo dpkg -i devkitpro-pacman.deb
-    sudo dkp-pacman -S switch-dev switch-bzip2 switch-freetype switch-glad switch-glm switch-libdrm_nouveau switch-libpng switch-mesa switch-pkg-config switch-sdl2 switch-zlib  
+    sudo dkp-pacman -S switch-dev switch-portlibs switch-glad switch-glm
     ```
 - Then
     ```  
@@ -65,11 +65,11 @@
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     export DEVKITPRO=/opt/devkitpro  
-    cmake -DBUILD_SWITCH=1 ../  
-    make texture.nro  
-    make texture_switch_release.zip  
+    cmake -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Release ../
+    make texture.nro
+    make texture_switch_release.zip
     ```
-#### On Linux (For Nintendo 3DS, DEB)
+#### On Linux (For Nintendo 3DS)
 - Install dependencies
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
@@ -82,11 +82,11 @@
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     export DEVKITPRO=/opt/devkitpro  
-    cmake -DBUILD_3DS=1 ../  
+    cmake -DPLATFORM_3DS=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture.3dsx  
     make texture_3ds_release.zip  
     ```
-#### On Linux (For Sony Ps Vita, DEB)
+#### On Linux (For Sony Ps Vita)
 - Install dependencies
     ```  
     git clone https://github.com/vitasdk/vdpm
@@ -102,7 +102,7 @@
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
     export VITASDK=/usr/local/vitasdk
-    cmake -DBUILD_VITA=1 ../
+    cmake -DPLATFORM_VITA=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture.vpk
     make texture_vita_release.zip
     ```
@@ -121,7 +121,7 @@
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
-    cmake -G "MSYS Makefiles" -DBUILD_WINDOWS=1 ../
-    make texture.elf
-    cd examples/texture && ./texture.elf
+    cmake -G "MSYS Makefiles" -DPLATFORM_WINDOWS=ON -DCMAKE_BUILD_TYPE=Release ../
+    make texture
+    cd examples/texture && ./texture
     ```
