@@ -7,7 +7,7 @@
 
 using namespace c2d;
 
-void addTweenShape(Io *io, C2DRectangle *rect, int count) {
+void addTweenShape(Texture *tex, C2DRectangle *rect, int count) {
 
     std::mt19937 mt((unsigned long) time(nullptr));
     std::uniform_real_distribution<float> x(0, rect->getSize().x);
@@ -19,10 +19,10 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
     for (int i = 0; i < count; i++) {
 
         auto r = FloatRect(x(mt), y(mt), w(mt), w(mt));
-        Shape *shape;
         // create a "gbatemp" texture every 10 shapes
         if (rect->getChilds().size() % 10 != 0) {
-            shape = new C2DRectangle(r);
+            auto shape = new C2DRectangle(r);
+            shape->setOrigin(Origin::Center);
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
             shape->setOutlineThickness(2);
             auto *tweenColor = new TweenColor(
@@ -36,8 +36,18 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
                     {scale(mt), scale(mt)}, scale(mt), TweenLoop::PingPong);
             tweenScale->play();
             shape->add(tweenScale);
+            shape->setOrigin(Origin::Center);
+            auto *tweenPos = new TweenPosition(
+                    {shape->getPosition().x, shape->getPosition().y}, {x(mt), y(mt)},
+                    3.0f, TweenLoop::PingPong);
+            shape->add(tweenPos);
+            auto *tweenRot = new TweenRotation(0, 360, 4.0f, TweenLoop::PingPong);
+            tweenRot->play();
+            shape->add(tweenRot);
+            rect->add(shape);
         } else {
-            shape = new C2DTexture(io->getRomFsPath() + "gbatemp.png");
+            auto shape = new Sprite(tex);
+            shape->setOrigin(Origin::Center);
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
             shape->setOutlineThickness(2);
             ((C2DTexture *) shape)->setPosition(r.left, r.top);
@@ -47,31 +57,27 @@ void addTweenShape(Io *io, C2DRectangle *rect, int count) {
                     {from, from}, {to, to}, scale(mt), TweenLoop::PingPong);
             tweenScale->play();
             shape->add(tweenScale);
+            auto *tweenPos = new TweenPosition(
+                    {shape->getPosition().x, shape->getPosition().y}, {x(mt), y(mt)},
+                    3.0f, TweenLoop::PingPong);
+            shape->add(tweenPos);
+            auto *tweenRot = new TweenRotation(0, 360, 4.0f, TweenLoop::PingPong);
+            tweenRot->play();
+            shape->add(tweenRot);
+            rect->add(shape);
         }
-        shape->setOrigin(Origin::Center);
-
-        auto *tweenPos = new TweenPosition(
-                {shape->getPosition().x, shape->getPosition().y}, {x(mt), y(mt)},
-                3.0f, TweenLoop::PingPong);
-        shape->add(tweenPos);
-        auto *tweenRot = new TweenRotation(0, 360, 4.0f, TweenLoop::PingPong);
-        tweenRot->play();
-        shape->add(tweenRot);
-
-        rect->add(shape);
     }
 }
 
-void removeTweenShape(C2DRectangle *rect, int count) {
+void removeTweenShape(C2DObject *obj, int count) {
 
     for (int i = 0; i < count; i++) {
-        if (rect->getChilds().empty()) {
+        if (obj->getChilds().empty()) {
             break;
         }
-        C2DObject *child = rect->getChilds().at(0);
+        C2DObject *child = obj->getChilds().at(0);
         if (child) {
             delete (child);
-            rect->remove(child);
         }
     }
 }
@@ -94,12 +100,15 @@ int main(int argc, char **argv) {
     renderer->add(text);
 
     // create a rectangle shape holding our childs
-    C2DRectangle *rect = new C2DRectangle({renderer->getSize().x, renderer->getSize().y});
+    auto rect = new C2DRectangle({renderer->getSize().x, renderer->getSize().y});
     rect->setFillColor(Color::Transparent);
     renderer->add(rect);
 
+    // load texture
+    auto texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "gbatemp.png");
+
     // add some shapes to the rect
-    addTweenShape(renderer->getIo(), rect, 100);
+    addTweenShape(texture, rect, 100);
 
     // set text in front of everything
     text->setLayer(2);
@@ -119,7 +128,7 @@ int main(int argc, char **argv) {
             }
 
             if (keys & Input::Key::Up) {
-                addTweenShape(renderer->getIo(), rect, 10);
+                addTweenShape(texture, rect, 10);
                 text->setLayer(2);
             } else if (keys & Input::Key::Down) {
                 removeTweenShape(rect, 10);
@@ -128,7 +137,7 @@ int main(int argc, char **argv) {
                 removeTweenShape(rect, 100);
                 text->setLayer(2);
             } else if (keys & Input::Key::Right) {
-                addTweenShape(renderer->getIo(), rect, 100);
+                addTweenShape(texture, rect, 100);
                 text->setLayer(2);
             }
         }
@@ -136,8 +145,8 @@ int main(int argc, char **argv) {
         // update fps
         snprintf(info, 128,
                  "libcross2d \"crazy example\"\n"
-                 "press dpad to do some stuff\nfps: %.2g/60, tris: %i",
-                 renderer->getFps(), (int) rect->getChilds().size() * 10);
+                 "press dpad to do some stuff\nfps: %.2g/60, objects: %i",
+                 renderer->getFps(), (int) rect->getChilds().size());
         text->setString(info);
 
         // draw everything
@@ -145,6 +154,7 @@ int main(int argc, char **argv) {
     }
 
     // cleanup
+    delete (texture);
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 
