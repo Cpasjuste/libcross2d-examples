@@ -37,8 +37,10 @@ int main(int argc, char **argv) {
 
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)
     auto config = new Config("C2D_CFG", renderer->getIo()->getDataPath() + "config.cfg");
-    // add a group to the configuration
+
+    // add a "config group"
     addConfigGroup(config);
+
     // load the configuration from file, overwriting default values (added in addConfigGroup)
     if (!config->load()) {
         // file doesn't exist or is malformed, (re)create it
@@ -49,8 +51,8 @@ int main(int argc, char **argv) {
     // note that you would normally check for a null pointer before "getInteger"
     printf("DEMO->INTEGER = %i\n", config->getOption("DEMO", "INTEGER")->getInteger());
 
-    // create some text (width default font), for fun
-    auto *text = new C2DText();
+    // create some text (width default font)
+    auto *text = new Text();
     std::ostringstream os;
     // loop through all groups and options
     for (auto &group : *config->getGroups()) {
@@ -100,6 +102,7 @@ int main(int argc, char **argv) {
 
     // cleanup
     delete (config);
+
     // will delete child's (textures, shapes, text..)
     delete (renderer);
 

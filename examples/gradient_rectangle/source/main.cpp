@@ -12,7 +12,7 @@ public:
 
     explicit GradientRectangle(const FloatRect &rect) : Sprite() {
         setTextureRect({0, 0, (int) rect.width, (int) rect.height});
-        setPosition(rect.left, rect.top);
+        Sprite::setPosition(rect.left, rect.top);
     }
 
     void setColor(const Color &color1, const Color &color2) {

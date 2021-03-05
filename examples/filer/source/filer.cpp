@@ -7,24 +7,24 @@
 using namespace c2d;
 
 Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
-             int fontSize, const c2d::FloatRect &rect) : C2DRectangle(rect) {
+             int fontSize, const c2d::FloatRect &rect) : RectangleShape(rect) {
 
     this->io = io;
     this->path = path;
     this->setFillColor(Color::Transparent);
 
     // create current path box
-    pathRect = new C2DRectangle({rect.width, fontSize + 10});
+    pathRect = new RectangleShape({rect.width, fontSize + 10});
     pathRect->setFillColor(Color::GrayLight);
     pathRect->setOutlineColor(Color::Gray);
     pathRect->setOutlineThickness(2);
-    pathText = new C2DText("/", (unsigned int) fontSize, font);
+    pathText = new Text("/", (unsigned int) fontSize, font);
     pathText->setOutlineThickness(2);
     pathText->setOrigin(Origin::Left);
     pathText->setPosition(4, (pathRect->getSize().y / 2));
     pathText->setSizeMax(rect.width - 8, 0);
     pathRect->add(pathText);
-    add(pathRect);
+    RectangleShape::add(pathRect);
 
     float y = pathRect->getGlobalBounds().top + pathRect->getGlobalBounds().height;
     FloatRect r = {0, y + 8, rect.width, rect.height - y - 8};
@@ -32,13 +32,13 @@ Filer::Filer(c2d::Io *io, const std::string &path, c2d::Font *font,
     listBox->setFillColor(Color::GrayLight);
     listBox->setOutlineColor(Color::Gray);
     listBox->setOutlineThickness(2);
+    listBox->setTextColor(Color::White, Color::Yellow);
     listBox->setTextOutlineThickness(2);
     listBox->getHighlight()->setOutlineThickness(2);
     listBox->getHighlight()->setFillColor(Color::White);
     listBox->getHighlight()->setOutlineColor(Color::Black);
     listBox->getHighlight()->add(new TweenAlpha(50, 100, 0.6f, TweenLoop::PingPong));
-
-    add(listBox);
+    RectangleShape::add(listBox);
 
     if (!getDir(path)) {
         getDir("/");
@@ -57,12 +57,8 @@ bool Filer::getDir(const std::string &p) {
     files = io->getDirList(path, true);
     if (files.empty()) {
         // add up/back ("..")
-        files.emplace_back("..", "..", Io::Type::Directory, 0, Color::White);
+        files.emplace_back("..", "..", Io::Type::Directory, 0);
         return false;
-    }
-    for (auto &file : files) {
-        file.color = file.type == Io::Type::Directory ?
-                     Color::Yellow : Color::White;
     }
 
     listBox->setFiles(files);

@@ -6,7 +6,7 @@
 
 using namespace c2d;
 
-const IntRect getTextureRect(C2DTexture *texture, int direction) {
+IntRect getTextureRect(Texture *texture, int direction) {
 
     int width = (int) texture->getSize().x / 4;
     int height = (int) texture->getSize().y / 4;
@@ -38,13 +38,14 @@ int main(int argc, char **argv) {
 
     // create a texture for the sprite
     auto texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "sprite_sheet.png");
+
     // create a sprite
     auto sprite = new Sprite(texture, getTextureRect(texture, 0));
     sprite->setOrigin(Origin::Center);
     sprite->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(sprite);
 
-    auto text = new C2DText("PRESS UP - DOWN - LEFT - RIGHT");
+    auto text = new Text("PRESS UP - DOWN - LEFT - RIGHT");
     text->setOrigin(Origin::Center);
     text->setPosition(sprite->getPosition().x, sprite->getPosition().y - 64);
     renderer->add(text);

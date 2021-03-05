@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
 
     // create a text and add it to the renderer
-    auto *text = new C2DText("FPS: 60/60");
+    auto *text = new Text("FPS: 60/60");
     renderer->add(text);
 
     // main loop
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
         snprintf(fps, 63, "FPS: %.2g/60\nDELTA: %f\nTIME: %f",
                  renderer->getFps(),
                  renderer->getDeltaTime().asSeconds(),
-                 renderer->getElapsedTime().asSeconds());
+                 renderer->getDrawTime());
         text->setString(fps);
 
         // draw everything

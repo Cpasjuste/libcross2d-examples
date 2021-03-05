@@ -39,8 +39,10 @@ int main(int argc, char **argv) {
 
     // create a configuration named "C2D_CFG" in a writable directory (getHomePath)
     auto config = new Config("C2D_CFG", renderer->getIo()->getDataPath() + "config.cfg");
+
     // add a group to the configuration
     addConfigGroup(config);
+
     // load the configuration from file, overwriting default values (added in addConfigGroup)
     if (!config->load()) {
         // file doesn't exist or is malformed, (re)create it
@@ -56,7 +58,8 @@ int main(int argc, char **argv) {
     configBox->getListBoxRight()->setFillColor(Color::Gray);
     configBox->getListBoxRight()->getHighlight()->setOutlineColor(Color::Yellow);
     configBox->getListBoxRight()->getHighlight()->setOutlineThickness(1);
-    configBox->getListBoxRight()->getHighlight()->add(new TweenAlpha(80, 150, 0.5f, TweenLoop::PingPong, TweenState::Playing));
+    configBox->getListBoxRight()->getHighlight()->add(
+            new TweenAlpha(80, 150, 0.5f, TweenLoop::PingPong, TweenState::Playing));
     configBox->load(config->getGroup("DEMO"));
     renderer->add(configBox);
 
