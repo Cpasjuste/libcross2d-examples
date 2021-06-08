@@ -25,10 +25,9 @@ int main(int argc, char **argv) {
             break;
         }
 
-        snprintf(fps, 63, "FPS: %.2g/60\nDELTA: %f\nTIME: %f",
+        snprintf(fps, 63, "FPS: %.2g/60\nDELTA: %f",
                  renderer->getFps(),
-                 renderer->getDeltaTime().asSeconds(),
-                 renderer->getDrawTime());
+                 renderer->getDeltaTime().asSeconds());
         text->setString(fps);
 
         // draw everything

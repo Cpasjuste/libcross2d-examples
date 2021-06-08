@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     renderer->setClearColor(Color::Yellow);
 
     // freetype font support, using cross2d default one
-    auto *text = new Text("Hello (GBAtemp) World");
+    auto *text = new Text("Hello World");
     text->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     text->setOrigin(Origin::Center);
     text->setFillColor(Color::Cyan);
@@ -21,11 +21,11 @@ int main(int argc, char **argv) {
     text->setOutlineThickness(2);
     renderer->add(text);
 
-    // bmfont font support (basic)
+    // bmfont font support (basic, binary)
     // https://www.angelcode.com/products/bmfont/
     auto bmFont = new BMFont();
     if (bmFont->loadFromFile(renderer->getIo()->getRomFsPath() + "/future.fnt")) {
-        auto *bmfText = new Text("Hello (GBAtemp) World", 18, bmFont);
+        auto *bmfText = new Text("Hello World", 18, bmFont);
         bmfText->setPosition(text->getPosition().x, text->getPosition().y + text->getLocalBounds().height);
         bmfText->setOrigin(Origin::Center);
         bmfText->setFillColor(Color::Cyan);
