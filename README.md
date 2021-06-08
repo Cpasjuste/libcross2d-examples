@@ -26,6 +26,7 @@
  - [configbox](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/configbox): draw a configuration to screen
  - [filer](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/filer): a file manager example
  - [crazy](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/crazy): some tweeny stuff...
+ - [physics](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/physics): basic box2d support
 
 ## Made with cross2d
 - [pfba](https://github.com/Cpasjuste/pfba)
