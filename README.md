@@ -29,8 +29,11 @@
  - [physics](https://github.com/Cpasjuste/libcross2d-examples/tree/master/examples/physics): basic box2d support
 
 ## Made with cross2d
-- [pfba](https://github.com/Cpasjuste/pfba)
-- [psnes](https://github.com/Cpasjuste/psnes)
+- [pfba](https://github.com/Cpasjuste/pfba): final burn alpha emulator
+- [psnes](https://github.com/Cpasjuste/psnes): snes9x emulator
+- [pplay](https://github.com/Cpasjuste/pplay): mpv video player
+- [SillyTower](https://github.com/Cpasjuste/sillytower): simple physics based game
+- [RetroDream](https://github.com/Cpasjuste/retrodream): sega dreamcast iso loader 
 
 ## Build and run...
 1. [On Linux For Linux](#on-linux-for-linux)
