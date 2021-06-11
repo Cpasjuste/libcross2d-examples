@@ -17,10 +17,9 @@ void addTweenShape(Texture *tex, C2DRectangle *rect, int count) {
     std::uniform_real_distribution<float> scale(0.2f, 1.0f);
 
     for (int i = 0; i < count; i++) {
-
         auto r = FloatRect(x(mt), y(mt), w(mt), w(mt));
         // create a "gbatemp" texture every 10 shapes
-        if (rect->getChilds().size() % 10 != 0) {
+        if (!tex || !tex->available || rect->getChilds().size() % 10 != 0) {
             auto shape = new C2DRectangle(r);
             shape->setOrigin(Origin::Center);
             shape->setOutlineColor({color(mt), color(mt), color(mt)});
