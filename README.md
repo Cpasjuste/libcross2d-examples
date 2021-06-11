@@ -106,7 +106,7 @@
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
     export VITASDK=/usr/local/vitasdk
-    cmake -DPLATFORM_VITA=ON -DOPTION_SDL2=ON -DOPTION_RENDER_GLES2=ON -DOPTION_LOADER_GLAD=OFF -DOPTION_BOX2D=ON -DCMAKE_BUILD_TYPE=Release ../
+    cmake -DPLATFORM_VITA=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture.vpk
     make texture_vita_release.zip
     ```
