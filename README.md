@@ -61,15 +61,15 @@
     ```  
     wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb  
     sudo dpkg -i devkitpro-pacman.deb
-    sudo dkp-pacman -S switch-dev switch-portlibs switch-glad switch-glm
+    sudo dkp-pacman -S switch-dev switch-portlibs dkp-toolchain-vars switch-cmake devkita64-cmake switch-glad switch-glm
     ```
 - Then
     ```  
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
-    export DEVKITPRO=/opt/devkitpro  
-    cmake -DPLATFORM_SWITCH=ON -DOPTION_BOX2D=ON -DCMAKE_BUILD_TYPE=Release ../
+    source /opt/devkitpro/switchvars.sh  
+    aarch64-none-elf-cmake -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Release ..
     make texture.nro
     make texture_switch_release.zip
     ```
