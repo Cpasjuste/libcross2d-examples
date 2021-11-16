@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     // bmfont font support (basic, binary)
     // https://www.angelcode.com/products/bmfont/
     auto bmFont = new BMFont();
-    if (bmFont->loadFromFile(renderer->getIo()->getRomFsPath() + "/future.fnt")) {
+    if (bmFont->loadFromFile(renderer->getIo()->getRomFsPath() + "future.fnt")) {
         auto *bmfText = new Text("Hello World", 18, bmFont);
         bmfText->setPosition(text->getPosition().x, text->getPosition().y + text->getLocalBounds().height);
         bmfText->setOrigin(Origin::Center);
