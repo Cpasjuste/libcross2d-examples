@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 
         unsigned int keys = renderer->getInput()->getKeys();
 
-        if (keys & Input::Key::Start) {
+        if (keys & Input::Key::Start || keys & EV_QUIT) {
             break;
         }
 
