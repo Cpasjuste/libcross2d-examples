@@ -52,7 +52,7 @@
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
-    cmake -DPLATFORM_LINUX=ON -DOPTION_BOX2D=ON -DCMAKE_BUILD_TYPE=Release ../
+    cmake -G "Unix Makefiles" -DPLATFORM_LINUX=ON -DOPTION_BOX2D=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture
     cd examples/texture && ./texture
     ```
@@ -69,7 +69,7 @@
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     source /opt/devkitpro/switchvars.sh  
-    aarch64-none-elf-cmake -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Release ..
+    aarch64-none-elf-cmake -G "Unix Makefiles" -DPLATFORM_SWITCH=ON -DCMAKE_BUILD_TYPE=Release ..
     make texture.nro
     make texture_switch_release.zip
     ```
@@ -86,7 +86,7 @@
     cd libcross2d-examples  
     mkdir cmake-build && cd cmake-build  
     export DEVKITPRO=/opt/devkitpro  
-    cmake -DPLATFORM_3DS=ON -DCMAKE_BUILD_TYPE=Release ../
+    cmake -G "Unix Makefiles" -DPLATFORM_3DS=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture.3dsx  
     make texture_3ds_release.zip  
     ```
@@ -106,7 +106,7 @@
     cd libcross2d-examples
     mkdir cmake-build && cd cmake-build
     export VITASDK=/usr/local/vitasdk
-    cmake -DPLATFORM_VITA=ON -DCMAKE_BUILD_TYPE=Release ../
+    cmake -G "Unix Makefiles" -DPLATFORM_VITA=ON -DCMAKE_BUILD_TYPE=Release ../
     make texture.vpk
     make texture_vita_release.zip
     ```
