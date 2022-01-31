@@ -43,10 +43,14 @@
 3. [On Windows For Windows](#on-windows-for-windows)
 
 #### On Linux (For Linux)
-- Install dependencies  
+- Install dependencies (Ubuntu)  
     ```  
     sudo apt-get install build-essential cmake git libsdl2-dev libfreetype6-dev libglm-dev libconfig-dev libphysfs-dev
     ```  
+    Fedora
+    ```
+    sudo dnf install @development-tools cmake git SDL2-devel freetype-devel glm-devel libconfig-devel physfs-devel Box2D-devel
+    ```
 - Then  
     ```  
     git clone --recursive https://github.com/Cpasjuste/libcross2d-examples.git
