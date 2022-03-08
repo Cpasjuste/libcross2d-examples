@@ -7,7 +7,6 @@
 using namespace c2d;
 
 IntRect getTextureRect(Texture *texture, int direction) {
-
     int width = (int) texture->getSize().x / 4;
     int height = (int) texture->getSize().y / 4;
     IntRect rect = {0, 0, width, height};
@@ -31,7 +30,6 @@ IntRect getTextureRect(Texture *texture, int direction) {
 }
 
 int main(int argc, char **argv) {
-
     // create the main renderer
     auto renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
     renderer->setClearColor(Color::GrayLight);
@@ -52,10 +50,9 @@ int main(int argc, char **argv) {
 
     // main loop
     while (true) {
-
         unsigned int keys = renderer->getInput()->getKeys();
 
-        if (keys & EV_QUIT) {
+        if (keys & Input::Key::Start || keys & EV_QUIT) {
             break;
         }
 
