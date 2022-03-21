@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     renderer->setClearColor(Color::GrayLight);
 
     // create a texture and add it to the main renderer
-    auto *texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "gbatemp.png");
+    auto *texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "icon.png");
     texture->setOrigin(Origin::Center);
     texture->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     renderer->add(texture);

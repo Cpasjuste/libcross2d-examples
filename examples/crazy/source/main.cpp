@@ -104,7 +104,7 @@ int main(int argc, char **argv) {
     renderer->add(rect);
 
     // load texture
-    auto texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "gbatemp.png");
+    auto texture = new C2DTexture(renderer->getIo()->getRomFsPath() + "icon.png");
 
     // add some shapes to the rect
     addTweenShape(texture, rect, 100);

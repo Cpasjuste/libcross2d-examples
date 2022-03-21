@@ -11,3 +11,5 @@
 
 ## Build and run...
 See [libcross2d-template](https://github.com/Cpasjuste/libcross2d-template) repository
+
+Please note that this example repository does not contain platform specific data (to run on switch, vita, ps4...). You'll have to copy them from the "libcross2d" data directories if you want to run the examples on these devices.

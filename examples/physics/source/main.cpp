@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     auto *world = new PhysicsWorld();
     view->add(world);
 
-    auto shape = new C2DTexture(renderer->getIo()->getRomFsPath() + "gbatemp.png");
+    auto shape = new C2DTexture(renderer->getIo()->getRomFsPath() + "icon.png");
     shape->setPosition(55, renderer->getSize().y - 100);
     shape->setSize(100, 100);
     shape->addPhysicsBody(world, b2_dynamicBody, 1.0f, 0.3f);
