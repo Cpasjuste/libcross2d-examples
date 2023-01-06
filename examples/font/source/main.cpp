@@ -9,10 +9,11 @@ using namespace c2d;
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
     renderer->setClearColor(Color::Red);
 
     // freetype font support, using cross2d default one
+#ifndef __NO_FREETYPE__
     auto *text = new Text("Hello World");
     text->setPosition(renderer->getSize().x / 2, renderer->getSize().y / 2);
     text->setOrigin(Origin::Center);
@@ -20,13 +21,13 @@ int main(int argc, char **argv) {
     text->setOutlineColor(Color::Black);
     text->setOutlineThickness(2);
     renderer->add(text);
+#endif
 
     // bmfont font support (basic, binary)
     // https://www.angelcode.com/products/bmfont/
     auto bmFont = new BMFont();
     if (bmFont->loadFromFile(renderer->getIo()->getRomFsPath() + "future.fnt")) {
-        bmFont->setFilter(Texture::Filter::Point);
-        auto *bmfText = new Text("Hello World", 18, bmFont);
+        auto *bmfText = new Text("Hello World", 20, bmFont);
         bmfText->setPosition(text->getPosition().x, text->getPosition().y + text->getLocalBounds().height);
         bmfText->setOrigin(Origin::Center);
         bmfText->setFillColor(Color::Cyan);
@@ -37,7 +38,7 @@ int main(int argc, char **argv) {
     while (true) {
 
         // stop if any key is pressed
-        if (renderer->getInput()->getKeys()) {
+        if (renderer->getInput()->getButtons()) {
             break;
         }
 

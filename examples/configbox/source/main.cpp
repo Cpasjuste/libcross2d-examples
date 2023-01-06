@@ -31,7 +31,7 @@ void addConfigGroup(Config *config) {
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto renderer = new C2DRenderer();
     renderer->setClearColor(Color::GrayLight);
 
     // add some delay to inputs
@@ -66,32 +66,32 @@ int main(int argc, char **argv) {
     // main loop
     while (true) {
 
-        unsigned int keys = renderer->getInput()->getKeys();
+        unsigned int keys = renderer->getInput()->getButtons();
 
         // stop if any key is pressed
-        if (keys & EV_QUIT) {
+        if (keys & Input::Button::Quit) {
             break;
         }
 
-        if (keys & Input::Key::Up) {
+        if (keys & Input::Button::Up) {
             configBox->navigate(ConfigBox::Navigation::Up);
-        } else if (keys & Input::Key::Down) {
+        } else if (keys & Input::Button::Down) {
             configBox->navigate(ConfigBox::Navigation::Down);
-        } else if (keys & Input::Key::Left) {
+        } else if (keys & Input::Button::Left) {
             if (configBox->getSelection()) {
                 //TODO: add multiple choice capability to Option?
             }
-        } else if (keys & Input::Key::Right) {
+        } else if (keys & Input::Button::Right) {
             if (configBox->getSelection()) {
                 //TODO: add multiple choice capability to Option?
             }
-        } else if (keys & Input::Key::Fire1) {
+        } else if (keys & Input::Button::A) {
             Option *opt = configBox->navigate(ConfigBox::Navigation::Enter);
             if (opt) {
                 //TODO: handle option
                 printf("selection: %s -> %s\n", opt->getName().c_str(), opt->getString().c_str());
             }
-        } else if (keys & Input::Key::Fire2) {
+        } else if (keys & Input::Button::B) {
             configBox->navigate(ConfigBox::Navigation::Exit);
         }
 

@@ -31,7 +31,7 @@ IntRect getTextureRect(Texture *texture, int direction) {
 
 int main(int argc, char **argv) {
     // create the main renderer
-    auto renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto renderer = new C2DRenderer();
     renderer->setClearColor(Color::GrayLight);
 
     // create a texture for the sprite
@@ -50,19 +50,19 @@ int main(int argc, char **argv) {
 
     // main loop
     while (true) {
-        unsigned int keys = renderer->getInput()->getKeys();
+        unsigned int keys = renderer->getInput()->getButtons();
 
-        if (keys & Input::Key::Start || keys & EV_QUIT) {
+        if (keys & Input::Button::Start || keys & Input::Button::Quit) {
             break;
         }
 
-        if (keys & Input::Key::Up) {
+        if (keys & Input::Button::Up) {
             sprite->setTextureRect(getTextureRect(texture, 1));
-        } else if (keys & Input::Key::Down) {
+        } else if (keys & Input::Button::Down) {
             sprite->setTextureRect(getTextureRect(texture, 0));
-        } else if (keys & Input::Key::Left) {
+        } else if (keys & Input::Button::Left) {
             sprite->setTextureRect(getTextureRect(texture, 2));
-        } else if (keys & Input::Key::Right) {
+        } else if (keys & Input::Button::Right) {
             sprite->setTextureRect(getTextureRect(texture, 3));
         }
 

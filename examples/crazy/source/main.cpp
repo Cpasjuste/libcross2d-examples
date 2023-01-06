@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
     char info[128];
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
 
     // set key repeat to 1 sec
     renderer->getInput()->setRepeatDelay(1000);
@@ -115,27 +115,27 @@ int main(int argc, char **argv) {
     // main loop
     while (true) {
 
-        unsigned int keys = renderer->getInput()->getKeys();
+        unsigned int keys = renderer->getInput()->getButtons();
         if (keys) {
             // "special" close/quit event send by sdl2 windows (linux platform)
-            if (keys & EV_QUIT) {
+            if (keys & Input::Button::Quit) {
                 break;
             }
             // exit if START or SELECT is pressed (+/- on switch)
-            if (keys & Input::Key::Start || keys & Input::Key::Select) {
+            if (keys & Input::Button::Start || keys & Input::Button::Select) {
                 break;
             }
 
-            if (keys & Input::Key::Up) {
+            if (keys & Input::Button::Up) {
                 addTweenShape(texture, rect, 10);
                 text->setLayer(2);
-            } else if (keys & Input::Key::Down) {
+            } else if (keys & Input::Button::Down) {
                 removeTweenShape(rect, 10);
                 text->setLayer(2);
-            } else if (keys & Input::Key::Left) {
+            } else if (keys & Input::Button::Left) {
                 removeTweenShape(rect, 100);
                 text->setLayer(2);
-            } else if (keys & Input::Key::Right) {
+            } else if (keys & Input::Button::Right) {
                 addTweenShape(texture, rect, 100);
                 text->setLayer(2);
             }

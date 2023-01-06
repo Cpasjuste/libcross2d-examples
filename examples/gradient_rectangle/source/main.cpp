@@ -9,7 +9,7 @@ using namespace c2d;
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
     renderer->setClearColor(Color::Red);
 
     // create a texture and add it to the main renderer
@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     while (true) {
 
         // stop if any key is pressed
-        if (renderer->getInput()->getKeys()) {
+        if (renderer->getInput()->getButtons()) {
             break;
         }
 

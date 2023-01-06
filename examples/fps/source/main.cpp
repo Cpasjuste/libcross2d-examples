@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
     char fps[64];
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
 
     // create a text and add it to the renderer
     auto *text = new Text("FPS: 60/60");
@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     while (true) {
 
         // stop if any key is pressed
-        if (renderer->getInput()->getKeys()) {
+        if (renderer->getInput()->getButtons()) {
             break;
         }
 

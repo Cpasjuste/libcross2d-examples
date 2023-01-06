@@ -70,20 +70,20 @@ bool Filer::getDir(const std::string &p) {
 
 bool Filer::step(unsigned int keys) {
 
-    if (keys & Input::Key::Up) {
+    if (keys & Input::Button::Up) {
         up();
-    } else if (keys & Input::Key::Down) {
+    } else if (keys & Input::Button::Down) {
         down();
-    } else if (keys & Input::Key::Right) {
+    } else if (keys & Input::Button::Right) {
         right();
-    } else if (keys & Input::Key::Left) {
+    } else if (keys & Input::Button::Left) {
         left();
-    } else if (keys & Input::Key::Fire1) {
+    } else if (keys & Input::Button::A) {
         if (getSelection()->type == Io::Type::File) {
             return true;
         }
         enter();
-    } else if (keys & Input::Key::Fire2) {
+    } else if (keys & Input::Button::B) {
         exit();
     }
 

@@ -10,7 +10,7 @@ using namespace c2d;
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
     renderer->setClearColor(Color::White);
 
     // set auto-repeat delay
@@ -25,10 +25,10 @@ int main(int argc, char **argv) {
     while (true) {
 
         // update inputs and get player 0 keys
-        unsigned int keys = renderer->getInput()->getKeys();
-        if (((keys & c2d::Input::Key::Start)
-             || (keys & c2d::Input::Key::Select)
-             || (keys & EV_QUIT))) {
+        unsigned int keys = renderer->getInput()->getButtons();
+        if (((keys & Input::Button::Start)
+             || (keys & Input::Button::Select)
+             || (keys & Input::Button::Quit))) {
             break;
         }
 

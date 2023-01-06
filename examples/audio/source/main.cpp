@@ -23,7 +23,7 @@ void fill_audio_buffer(void *audio_buffer, size_t audio_size, int frequency) {
 int main(int argc, char **argv) {
 
     // create the main renderer
-    auto *renderer = new C2DRenderer({C2D_SCREEN_WIDTH, C2D_SCREEN_HEIGHT});
+    auto *renderer = new C2DRenderer();
 
     // create audio interface
     auto *audio = new C2DAudio(SAMPLE_RATE, SAMPLE_COUNT);
@@ -37,17 +37,17 @@ int main(int argc, char **argv) {
     // main loop
     while (true) {
 
-        unsigned int keys = renderer->getInput()->getKeys();
+        unsigned int keys = renderer->getInput()->getButtons();
 
-        if (keys & Input::Key::Start || keys & EV_QUIT) {
+        if (keys & Input::Button::Start || keys & Input::Button::Quit) {
             break;
         }
 
-        if (keys & Input::Key::Fire1) {
+        if (keys & Input::Button::A) {
             fill_audio_buffer(audio_buffer, audio->getSamplesSize(), notes[0]);
-        } else if (keys & Input::Key::Fire2) {
+        } else if (keys & Input::Button::B) {
             fill_audio_buffer(audio_buffer, audio->getSamplesSize(), notes[1]);
-        } else if (keys & Input::Key::Fire3) {
+        } else if (keys & Input::Button::X) {
             fill_audio_buffer(audio_buffer, audio->getSamplesSize(), notes[2]);
         }
 
